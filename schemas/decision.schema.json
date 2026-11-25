@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision.schema.json",
+  "title": "Decision Record",
+  "description": "一条决策记录。只追加，不删除；记录为什么，不只记录什么。",
+  "type": "object",
+  "required": [
+    "id",
+    "date",
+    "decision",
+    "rationale",
+    "owner"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^D[0-9]+$",
+      "description": "决策 ID，例如 D7"
+    },
+    "date": {
+      "type": "string",
+      "description": "ISO 日期，例如 2026-11-10"
+    },
+    "decision": {
+      "type": "string",
+      "description": "决定了什么，一句话"
+    },
+    "rationale": {
+      "type": "string",
+      "description": "为什么这样决定；证据、权衡、被放弃的选项"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "支撑/反对这个决定的证据 ID"
+    },
+    "alternatives_considered": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "考虑过但没选的替代方案"
+    },
+    "owner": {
+      "type": "string",
+      "description": "谁做的决定"
+    },
+    "revisit_condition": {
+      "type": "string",
+      "description": "什么条件下需要重新评估这个决定"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "superseded", "reverted"],
+      "description": "当前状态"
+    }
+  },
+  "additionalProperties": false
+}

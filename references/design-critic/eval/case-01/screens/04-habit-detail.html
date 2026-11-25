@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晚读 · 习惯详情</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5c3-1.2 5.4-1.2 8 0 2.6-1.2 5-1.2 8 0v13c-3-1.2-5.4-1.2-8 0-2.6-1.2-5-1.2-8 0v-13z"/><path d="M12 5.5v13"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5L12 21l9-4.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20v-8M10 20V5M16 20v-5M21 20H3"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 6l6 6-6 6"/></symbol>
+</svg>
+
+<main class="screen">
+
+  <div class="statusbar" aria-hidden="true">
+    <span class="statusbar__time">21:36</span>
+    <span class="statusbar__icons">
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="9" width="2.4" height="4" rx="1"/><rect x="4.6" y="7" width="2.4" height="6" rx="1"/><rect x="8.2" y="5" width="2.4" height="8" rx="1"/><rect x="11.8" y="3" width="2.4" height="10" rx="1"/></svg>
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><path d="M2 6.2a9 9 0 0 1 12 0" fill="none"/><path d="M4.4 8.8a5.6 5.6 0 0 1 7.2 0" fill="none"/><circle cx="8" cy="11.6" r="1.2" stroke="none"/></svg>
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="4.5" width="12" height="7" rx="2" fill="none"/><rect x="2.8" y="6.3" width="8.4" height="3.4" rx="1" stroke="none"/><path d="M14.6 7v2" fill="none"/></svg>
+    </span>
+  </div>
+
+  <div class="topbar">
+    <button class="icon-btn" type="button" aria-label="返回">
+      <svg class="icon icon--md" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+    </button>
+    <button class="icon-btn" type="button" aria-label="更多">
+      <svg class="icon icon--md" aria-hidden="true"><use href="#i-more"/></svg>
+    </button>
+  </div>
+
+  <header class="detail-hero">
+    <div class="detail-title-row">
+      <span class="icon-badge"><svg class="icon icon--md"><use href="#i-book"/></svg></span>
+      <h1 class="detail-title">晚读</h1>
+    </div>
+    <p class="detail-sub">每晚 · 洗完碗之后</p>
+    <div class="detail-stat">
+      <span class="detail-stat__value">21</span>
+      <span class="detail-stat__unit">次</span>
+      <span class="detail-stat__meta">28 天里<br>从 10 月 21 日开始</span>
+    </div>
+  </header>
+
+  <div class="section-head">
+    <span class="section-title">三级阶梯</span>
+    <span class="section-meta">都算数</span>
+  </div>
+
+  <ol class="ladder">
+    <li class="ladder__item">
+      <span class="ladder__node" aria-hidden="true"></span>
+      <div class="ladder__row">
+        <h2 class="ladder__title">完整</h2>
+        <span class="ladder__time">20 分钟</span>
+      </div>
+      <p class="ladder__desc">读满一章，或者翻 20 页。想多读就多读。</p>
+    </li>
+    <li class="ladder__item">
+      <span class="ladder__node" aria-hidden="true"></span>
+      <div class="ladder__row">
+        <h2 class="ladder__title">简化</h2>
+        <span class="ladder__time">5 分钟</span>
+      </div>
+      <p class="ladder__desc">读一页，合上书也算。今天多半会选这个。</p>
+    </li>
+    <li class="ladder__item">
+      <span class="ladder__node" aria-hidden="true"></span>
+      <div class="ladder__row">
+        <h2 class="ladder__title">微型</h2>
+        <span class="ladder__time">30 秒</span>
+      </div>
+      <p class="ladder__desc">只把书翻到今天这一页。给明天留个位置。</p>
+    </li>
+  </ol>
+  <p class="ladder__note">三个版本都算数。今天的环不会问你是哪一版。</p>
+
+  <div class="section-head">
+    <span class="section-title">最近 28 天</span>
+    <span class="section-meta">21 天有记录</span>
+  </div>
+
+  <section class="heatmap" aria-label="最近二十八天的记录强度，二十一天有记录">
+    <div class="heatmap__grid">
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--1"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--3"></span>
+
+      <span class="heat-cell heat-cell--1"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--3"></span>
+
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--1"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--2"></span>
+
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--3"></span>
+      <span class="heat-cell heat-cell--0"></span>
+      <span class="heat-cell heat-cell--2"></span>
+      <span class="heat-cell heat-cell--0 is-today"></span>
+    </div>
+    <div class="heat-legend">
+      <span>少</span>
+      <span class="heat-legend__swatch heat-legend__swatch--0"></span>
+      <span class="heat-legend__swatch heat-legend__swatch--1"></span>
+      <span class="heat-legend__swatch heat-legend__swatch--2"></span>
+      <span class="heat-legend__swatch heat-legend__swatch--3"></span>
+      <span>多</span>
+      <span class="section-meta">从左到右 · 今天在最后一格</span>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <span class="section-title">身体记账</span>
+    <span class="section-meta">最近 3 次</span>
+  </div>
+
+  <section class="log" aria-label="体感记录">
+    <div class="log__item">
+      <span class="log__date">11.16</span>
+      <div>
+        <div class="log__word">稳</div>
+        <p class="log__text">读完不想立刻看手机。</p>
+      </div>
+    </div>
+    <div class="log__item">
+      <span class="log__date">11.14</span>
+      <div>
+        <div class="log__word">松</div>
+        <p class="log__text">读到一半就困了，也没关系。</p>
+      </div>
+    </div>
+    <div class="log__item">
+      <span class="log__date">11.12</span>
+      <div>
+        <div class="log__word">亮</div>
+        <p class="log__text">有一句话说中了最近的事。</p>
+      </div>
+    </div>
+  </section>
+
+  <button class="btn-ghost" type="button">
+    全部记录
+    <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg>
+  </button>
+
+</main>
+
+<nav class="tabbar" aria-label="一级导航">
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg><span>今天</span></a>
+  <a class="tab is-active" href="#" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>习惯</span></a>
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span>回顾</span></a>
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><span>我</span></a>
+</nav>
+
+</body>
+</html>

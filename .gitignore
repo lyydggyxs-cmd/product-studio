@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Editor / tooling
+.idea/
+.vscode/
+*.swp
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Dependency installs (should not be committed)
+node_modules/
+__pycache__/
+*.pyc
+
+# Claude Code local settings
+.claude/settings.local.json

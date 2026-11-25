@@ -1,0 +1,319 @@
+/* ============================================================
+   日迹 · Design Tokens
+   规则：原始值只允许出现在本文件的 :root / [data-theme="dark"]。
+   页面与 base.css 只允许 var(--token)。
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- primitive · color ---------- */
+  --paper-100: oklch(0.991 0.0035 90);   /* card surface */
+  --paper-200: oklch(0.973 0.007 86);    /* page, warm paper */
+  --paper-300: oklch(0.955 0.010 84);    /* sunken / chip */
+  --paper-400: oklch(0.925 0.012 82);    /* strong line / heat zero */
+
+  --ink-900: oklch(0.240 0.013 68);      /* warm graphite */
+  --ink-700: oklch(0.400 0.011 70);
+  --ink-500: oklch(0.465 0.010 72);      /* ≥4.5:1 on paper */
+  --ink-300: oklch(0.620 0.008 75);      /* decorative / disabled only */
+  --ink-200: oklch(0.780 0.008 78);
+  --ink-100: oklch(0.880 0.006 80);
+
+  --moss-700: oklch(0.400 0.058 152);
+  --moss-600: oklch(0.470 0.062 152);
+  --moss-500: oklch(0.540 0.068 152);
+  --moss-100: oklch(0.935 0.020 150);
+
+  --clay-500: oklch(0.600 0.068 55);
+  --clay-100: oklch(0.940 0.018 60);
+  --slate-500: oklch(0.560 0.038 250);
+  --slate-100: oklch(0.935 0.012 250);
+
+  --amber-600: oklch(0.545 0.080 78);    /* warning text only, 4.6:1 on paper */
+  --rust-600: oklch(0.520 0.095 35);     /* error text only */
+  --white: oklch(1 0 0);
+
+  /* ---------- primitive · type ---------- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  --font-numeric: -apple-system, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+
+  --text-display: 3.5rem;        /* 56 */
+  --lh-display: 0.98;
+  --tracking-display: -0.035em;
+
+  --text-hero: 2rem;             /* 32 */
+  --lh-hero: 1.2;
+  --tracking-hero: -0.01em;
+
+  --text-title: 1.5rem;          /* 24 */
+  --lh-title: 1.25;
+  --tracking-title: -0.015em;
+
+  --text-stat: 2.5rem;           /* 40 */
+  --lh-stat: 1;
+  --tracking-stat: -0.025em;
+
+  --text-headline: 1.125rem;     /* 18 */
+  --lh-headline: 1.35;
+  --tracking-headline: 0em;
+
+  --text-body: 0.9375rem;        /* 15 */
+  --lh-body: 1.6;
+
+  --text-caption: 0.8125rem;     /* 13 */
+  --lh-caption: 1.5;
+
+  --text-micro: 0.75rem;         /* 12 */
+  --lh-micro: 1.4;
+
+  --text-eyebrow: 0.6875rem;     /* 11 */
+  --lh-eyebrow: 1.3;
+  --tracking-eyebrow: 0.08em;
+  --tracking-numeric: -0.02em;
+  --tracking-button: 0.01em;
+
+  --text-ring: 2.375rem;         /* 38 */
+  --text-ring-mini: 0.8125rem;   /* 13 */
+  --text-empty: 1.75rem;         /* 28 */
+  --lh-empty: 1.32;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* ---------- primitive · space ---------- */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---------- primitive · radius ---------- */
+  --radius-xs: 6px;
+  --radius-control: 12px;
+  --radius-card: 18px;
+  --radius-hero: 24px;
+  --radius-pill: 999px;
+
+  /* ---------- primitive · line / size ---------- */
+  --hairline: 1px;
+  --hairline-strong: 1.5px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --underline-thickness: 2px;
+  --underline-offset: 4px;
+
+  --icon-stroke: 1.75;
+  --icon-sm: 16px;
+  --icon-mini: 14px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  --icon-xl: 28px;
+  --icon-badge: 40px;
+  --status-icon: 16px;
+  --status-icon-stroke: 1.5;
+  --empty-art: 168px;
+  --node-size: 12px;
+
+  --ring-size-hero: 148px;
+  --ring-stroke: 11px;
+  --ring-track-width: 11px;
+  --tick-width: 2px;
+  --ring-size-mini: 24px;
+  --ring-stroke-mini: 3px;
+  --check-badge: 22px;
+  --dot-size: 6px;
+  --heat-cell: 20px;
+  --heat-gap: 5px;
+
+  --screen-max: 430px;
+  --page-pad-x: 20px;
+  --statusbar-height: 40px;
+  --tabbar-height: 76px;
+  --island-width: 84px;
+  --island-height: 24px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --touch-min: 48px;
+  --control-height: 48px;
+  --button-height: 52px;
+  --chip-height: 56px;
+  --sensation-chip-height: 44px;
+  --row-height: 64px;
+
+  --press-scale: 0.985;
+  --opacity-disabled: 0.4;
+  --opacity-quiet: 0.6;
+  --opacity-locked: 0.55;
+  --blur-tab: 20px;
+
+  --z-tabbar: 20;
+  --z-sticky: 10;
+
+  /* ---------- semantic · color ---------- */
+  --color-bg-page: var(--paper-200);
+  --color-bg-surface: var(--paper-100);
+  --color-bg-sunken: var(--paper-300);
+
+  --color-text-primary: var(--ink-900);
+  --color-text-secondary: var(--ink-700);
+  --color-text-tertiary: var(--ink-500);
+  --color-text-disabled: var(--ink-300);
+  --color-text-inverse: var(--paper-100);
+
+  --color-border-hairline: color-mix(in oklch, var(--ink-900) 7%, transparent);
+  --color-border-strong: color-mix(in oklch, var(--ink-900) 16%, transparent);
+
+  --color-accent: var(--moss-600);
+  --color-accent-pressed: var(--moss-700);
+  --color-accent-soft: var(--moss-100);
+  --color-focus: var(--moss-500);
+  --color-success: var(--moss-600);
+  --color-warning: var(--amber-600);
+  --color-error: var(--rust-600);
+
+  --color-habit-1: var(--moss-600);
+  --color-habit-1-soft: var(--moss-100);
+  --color-habit-2: var(--clay-500);
+  --color-habit-2-soft: var(--clay-100);
+  --color-habit-3: var(--slate-500);
+  --color-habit-3-soft: var(--slate-100);
+
+  --color-heat-0: var(--paper-400);
+  --color-heat-1: color-mix(in oklch, var(--moss-600) 22%, var(--paper-200));
+  --color-heat-2: color-mix(in oklch, var(--moss-600) 48%, var(--paper-200));
+  --color-heat-3: var(--moss-600);
+
+  --color-chart-line: var(--moss-600);
+  --color-chart-fill: color-mix(in oklch, var(--moss-600) 10%, transparent);
+  --color-chart-grid: color-mix(in oklch, var(--ink-900) 6%, transparent);
+  --chart-line-width: 2px;
+  --chart-dot: 3px;
+
+  --color-tab-bg: color-mix(in oklch, var(--paper-200) 86%, transparent);
+  --color-tab-active: var(--color-text-primary);
+  --color-tab-inactive: var(--color-text-tertiary);
+
+  --color-row-hover: color-mix(in oklch, var(--ink-900) 4%, transparent);
+  --color-banner-bg: var(--paper-300);
+  --color-glow: color-mix(in oklch, var(--moss-600) 7%, transparent);
+
+  /* ---------- semantic · shadow ---------- */
+  --shadow-hero:
+    inset 0 1px 0 color-mix(in oklch, var(--white) 90%, transparent),
+    0 0 0 var(--hairline) color-mix(in oklch, var(--ink-900) 6%, transparent),
+    0 18px 40px -28px color-mix(in oklch, var(--ink-900) 35%, transparent);
+  --shadow-raised:
+    0 0 0 var(--hairline) color-mix(in oklch, var(--ink-900) 8%, transparent),
+    0 8px 20px -16px color-mix(in oklch, var(--ink-900) 30%, transparent);
+  --shadow-none: none;
+
+  /* ---------- semantic · motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-instant: 120ms;
+  --dur-feedback: 160ms;
+  --dur-ring: 260ms;
+  --dur-enter: 240ms;
+  --dur-celebrate: 900ms;
+  --celebrate-from-scale: 0.96;
+  --celebrate-rest-opacity: 0.55;
+
+  /* ---------- component · card ---------- */
+  --card-bg: var(--color-bg-surface);
+  --card-radius: var(--radius-hero);
+  --card-pad: var(--space-5);
+  --card-ring: var(--color-border-hairline);
+  --card-shadow: var(--shadow-hero);
+
+  /* ---------- component · chips / buttons ---------- */
+  --chip-bg: var(--color-bg-sunken);
+  --chip-border: var(--color-border-hairline);
+  --chip-text: var(--color-text-primary);
+  --chip-sub-text: var(--color-text-tertiary);
+  --chip-selected-bg: var(--color-accent-soft);
+  --chip-selected-border: var(--color-accent);
+
+  --button-primary-bg: var(--color-accent);
+  --button-primary-bg-pressed: var(--color-accent-pressed);
+  --button-primary-text: var(--color-text-inverse);
+  --button-radius: var(--radius-control);
+  --button-ghost-text: var(--color-text-secondary);
+
+  /* ---------- component · arc ---------- */
+  --arc-track: color-mix(in oklch, var(--ink-900) 8%, transparent);
+  --arc-fill: var(--color-accent);
+  --arc-center-caption: var(--color-text-tertiary);
+
+  /* ---------- component · rows / nav ---------- */
+  --row-divider: var(--color-border-hairline);
+  --row-press-bg: var(--color-row-hover);
+  --tab-bg: var(--color-tab-bg);
+  --tab-border: var(--color-border-hairline);
+}
+
+/* ============================================================
+   Dark mapping — paired, not inverted. Product is light-first.
+   ============================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg-page: oklch(0.190 0.008 70);
+  --color-bg-surface: oklch(0.228 0.009 70);
+  --color-bg-sunken: oklch(0.168 0.008 70);
+
+  --color-text-primary: oklch(0.930 0.008 85);
+  --color-text-secondary: oklch(0.760 0.008 82);
+  --color-text-tertiary: oklch(0.660 0.008 80);
+  --color-text-disabled: oklch(0.480 0.008 75);
+  --color-text-inverse: oklch(0.190 0.008 70);
+
+  --color-border-hairline: color-mix(in oklch, var(--paper-100) 12%, transparent);
+  --color-border-strong: color-mix(in oklch, var(--paper-100) 24%, transparent);
+
+  --color-accent: oklch(0.660 0.075 152);
+  --color-accent-pressed: oklch(0.700 0.078 152);
+  --color-accent-soft: oklch(0.300 0.030 150);
+  --color-focus: oklch(0.700 0.078 152);
+  --color-success: oklch(0.700 0.070 152);
+  --color-warning: oklch(0.760 0.090 78);
+  --color-error: oklch(0.700 0.100 35);
+
+  --color-habit-1: oklch(0.660 0.075 152);
+  --color-habit-1-soft: oklch(0.300 0.030 150);
+  --color-habit-2: oklch(0.700 0.070 55);
+  --color-habit-2-soft: oklch(0.310 0.028 55);
+  --color-habit-3: oklch(0.680 0.050 250);
+  --color-habit-3-soft: oklch(0.300 0.022 250);
+
+  --color-heat-0: oklch(0.280 0.008 70);
+  --color-heat-1: color-mix(in oklch, var(--color-accent) 26%, var(--color-bg-page));
+  --color-heat-2: color-mix(in oklch, var(--color-accent) 55%, var(--color-bg-page));
+  --color-heat-3: var(--color-accent);
+
+  --color-chart-line: var(--color-accent);
+  --color-chart-fill: color-mix(in oklch, var(--color-accent) 16%, transparent);
+  --color-chart-grid: color-mix(in oklch, var(--paper-100) 8%, transparent);
+
+  --color-tab-bg: color-mix(in oklch, var(--color-bg-page) 84%, transparent);
+  --color-row-hover: color-mix(in oklch, var(--paper-100) 6%, transparent);
+  --color-banner-bg: oklch(0.270 0.010 70);
+  --color-glow: color-mix(in oklch, var(--color-accent) 12%, transparent);
+
+  --shadow-hero:
+    inset 0 1px 0 color-mix(in oklch, var(--paper-100) 8%, transparent),
+    0 0 0 var(--hairline) color-mix(in oklch, var(--paper-100) 10%, transparent),
+    0 18px 40px -28px oklch(0 0 0 / 0.6);
+  --shadow-raised:
+    0 0 0 var(--hairline) color-mix(in oklch, var(--paper-100) 12%, transparent),
+    0 8px 20px -16px oklch(0 0 0 / 0.5);
+
+  --arc-track: color-mix(in oklch, var(--paper-100) 12%, transparent);
+}

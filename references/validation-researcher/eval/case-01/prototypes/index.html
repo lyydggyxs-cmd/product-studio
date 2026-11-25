@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原型 · A2 三级完成度视觉平等 · 不是产品</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --faint: #8f8f8f;
+    --line: #c9c9c7;
+    --line-strong: #8a8a88;
+    --bg: #f1f1ef;
+    --card: #ffffff;
+    --soft: #ededeb;
+    --soft-2: #e4e4e2;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  /* ---------- harness ---------- */
+  .harness {
+    background: #e7e7e5;
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px 16px;
+  }
+  .harness-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .tag {
+    display: inline-block;
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    color: #4a4a48;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px 9px;
+    margin-bottom: 7px;
+  }
+  .harness h1 {
+    margin: 0 0 3px;
+    font-size: 19px;
+    letter-spacing: -.01em;
+  }
+  .harness .sub {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .harness-badge {
+    flex: 0 0 auto;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #4a4a48;
+    border: 1px dashed var(--line-strong);
+    border-radius: 9px;
+    padding: 7px 11px;
+    background: rgba(255,255,255,.55);
+    text-align: right;
+  }
+  .controls {
+    max-width: 1100px;
+    margin: 13px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .control-label {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .06em;
+    color: #6a6a68;
+    margin-right: 2px;
+  }
+  .ctrl {
+    font-size: 11.5px;
+    line-height: 1;
+    padding: 7px 10px;
+    border: 1px solid #bcbcba;
+    background: #fff;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .ctrl:hover { border-color: #555; }
+  .ctrl.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+  .ctrl.reset { margin-left: auto; border-style: dashed; color: #555; }
+  .ctrl.reset:hover { color: var(--ink); }
+
+  /* ---------- stage ---------- */
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 410px) minmax(280px, 350px);
+    gap: 34px;
+    justify-content: center;
+    align-items: start;
+    padding: 30px 20px 22px;
+  }
+  .phone-column { display: flex; flex-direction: column; align-items: center; }
+  .phone {
+    position: relative;
+    width: min(390px, 100%);
+    height: 844px;
+    background: #fff;
+    border: 1px solid #b6b6b4;
+    border-radius: 26px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .statusbar {
+    flex: 0 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    font-size: 11.5px;
+    color: #555;
+    background: #fff;
+    border-bottom: 1px solid #efefed;
+  }
+  .status-right { letter-spacing: .06em; font-size: 10px; color: #777; }
+  .screen {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 20px 19px 18px;
+  }
+  .phone-caption {
+    margin: 10px 0 0;
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    color: #777;
+    letter-spacing: .02em;
+  }
+  .tabbar {
+    flex: 0 0 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #dcdcda;
+    background: #fff;
+  }
+  .tab {
+    border: 0;
+    background: transparent;
+    font-size: 12px;
+    color: #858583;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .tab.active { color: var(--ink); font-weight: 600; }
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ink);
+    transform: translateX(-50%);
+  }
+
+  /* ---------- phone content ---------- */
+  .screen-head {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .02em;
+    margin-bottom: 18px;
+  }
+  .habit-block { margin-bottom: 24px; }
+  .habit-title {
+    margin: 0 0 5px;
+    font-size: 24px;
+    letter-spacing: -.015em;
+    line-height: 1.25;
+  }
+  .anchor {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .anchor::before { content: "锚点 · "; color: var(--faint); }
+  .prompt-block { margin-bottom: 12px; }
+  .prompt {
+    margin: 0 0 4px;
+    font-size: 17px;
+    line-height: 1.35;
+    letter-spacing: -.01em;
+  }
+  .prompt-sub {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option {
+    width: 100%;
+    min-height: 68px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    padding: 11px 14px;
+    border: 1px solid #bcbcba;
+    border-radius: var(--radius);
+    background: #fff;
+    text-align: left;
+    transition: border-color .12s ease;
+  }
+  .option:hover { border-color: #555; }
+  .option .action { font-size: 15px; font-weight: 600; line-height: 1.35; }
+  .option .time { font-size: 12px; color: var(--muted); line-height: 1.3; }
+
+  /* control arm B: conventional completion hierarchy (greyscale only) */
+  .version-B .option.full {
+    background: #1f1f1f;
+    border-color: #1f1f1f;
+    color: #fff;
+  }
+  .version-B .option.full .time { color: #c9c9c7; }
+  .version-B .option.simplified {
+    background: #efefed;
+    border-color: #9a9a98;
+  }
+  .version-B .option.mini {
+    background: #fff;
+    border-color: #c9c9c7;
+    border-style: dashed;
+    color: #5c5c5a;
+  }
+  .version-B .option.mini .time { color: #8f8f8d; }
+
+  .banner {
+    border: 1px solid #bcbcba;
+    background: #f4f4f2;
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    margin-bottom: 17px;
+  }
+  .banner .banner-label {
+    display: block;
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    color: #74746f;
+    margin-bottom: 3px;
+  }
+  .banner-offline { border-style: dashed; }
+  .banner-reflection {
+    background: #fff;
+    border-style: dashed;
+  }
+  .banner-reflection .dismiss {
+    display: inline-block;
+    margin-top: 6px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: 11.5px;
+    color: #5c5c5a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* empty */
+  .empty-block { margin: 12px 0 22px; }
+  .empty-title { margin: 0 0 7px; font-size: 23px; letter-spacing: -.015em; }
+  .empty-body { margin: 0; font-size: 13px; line-height: 1.65; color: #4e4e4c; }
+  .suggestions { display: flex; flex-direction: column; gap: 8px; }
+  .suggestion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #bcbcba;
+    border-radius: var(--radius);
+    background: #fff;
+    text-align: left;
+  }
+  .suggestion:hover { border-color: #555; }
+  .suggestion .s-name { font-size: 15px; font-weight: 600; }
+  .suggestion .s-start { font-size: 12px; color: var(--muted); }
+  .empty-foot { margin: 16px 0 0; font-size: 11.5px; color: var(--faint); }
+
+  /* loading */
+  .skeleton-title,
+  .skeleton-line,
+  .skeleton-card {
+    background: #e8e8e6;
+    border-radius: 8px;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .skeleton-title { width: 42%; height: 26px; margin: 4px 0 12px; }
+  .skeleton-line { height: 12px; margin-bottom: 9px; }
+  .skeleton-line.short { width: 64%; margin-bottom: 24px; }
+  .skeleton-card { height: 68px; margin-bottom: 8px; border-radius: var(--radius); }
+  .loading-label { margin: 18px 0 0; font-size: 12px; color: var(--muted); text-align: center; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+  /* completion */
+  .complete-wrap { text-align: center; padding-top: 8px; }
+  .ring { display: block; margin: 0 auto 10px; }
+  .complete-title {
+    margin: 0 0 5px;
+    font-size: 23px;
+    letter-spacing: -.015em;
+    line-height: 1.3;
+  }
+  .complete-sub { margin: 0 0 3px; font-size: 13.5px; color: #3f3f3d; }
+  .complete-count { margin: 0; font-size: 12px; color: var(--muted); }
+  .queued {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 9px;
+    border: 1px dashed #a5a5a3;
+    border-radius: 7px;
+    font-size: 11px;
+    color: #555;
+  }
+  .tag-small {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 9px;
+    letter-spacing: .04em;
+    margin-left: 4px;
+    color: #666;
+  }
+  .sensation { margin-top: 26px; }
+  .sensation-q { margin: 0 0 9px; font-size: 13px; color: #3f3f3d; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .chip {
+    padding: 8px 11px;
+    border: 1px solid #bcbcba;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .chip:hover { border-color: #555; }
+  .chip.skip { border: 0; background: transparent; color: #777; text-decoration: underline; text-underline-offset: 2px; }
+  .undo {
+    display: inline-block;
+    margin-top: 22px;
+    border: 0;
+    background: transparent;
+    padding: 4px;
+    font-size: 12px;
+    color: #6b6b69;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* final */
+  .final { padding-top: 40px; }
+  .final-title { margin: 0 0 6px; font-size: 24px; letter-spacing: -.015em; }
+  .final-sub { margin: 0 0 22px; font-size: 14px; color: #3f3f3d; }
+  .final-detail { margin: 0 0 6px; font-size: 13px; color: #4e4e4c; }
+  .final-sensation { margin: 0; font-size: 13px; color: #4e4e4c; }
+  .final-actions { margin-top: 32px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+  /* error */
+  .error-block { margin: 22px 0 22px; }
+  .error-title { margin: 0 0 8px; font-size: 22px; letter-spacing: -.015em; }
+  .error-body { margin: 0; font-size: 13.5px; line-height: 1.65; color: #3f3f3d; }
+  .error-actions { display: flex; flex-direction: column; gap: 8px; }
+  .error-foot { margin: 16px 0 0; font-size: 11.5px; color: var(--faint); line-height: 1.55; }
+  .btn-primary {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    background: #1f1f1f;
+    color: #fff;
+    font-size: 14px;
+  }
+  .btn-primary:hover { background: #000; }
+  .btn-secondary {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #bcbcba;
+    border-radius: 10px;
+    background: #fff;
+    color: #3f3f3d;
+    font-size: 14px;
+  }
+  .btn-secondary:hover { border-color: #555; }
+  .final-actions .btn-primary,
+  .final-actions .btn-secondary { width: auto; min-width: 120px; }
+
+  /* tab notice */
+  .notice-block { margin-top: 46px; text-align: center; }
+  .notice-title { margin: 0 0 9px; font-size: 21px; letter-spacing: -.015em; line-height: 1.35; }
+  .notice-body { margin: 0 0 24px; font-size: 13px; line-height: 1.65; color: #4e4e4c; }
+
+  /* toast */
+  .toast {
+    position: absolute;
+    left: 50%;
+    bottom: 74px;
+    transform: translate(-50%, 6px);
+    background: #1f1f1f;
+    color: #fff;
+    font-size: 11.5px;
+    line-height: 1;
+    padding: 9px 13px;
+    border-radius: 999px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    white-space: nowrap;
+    max-width: 86%;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- notes panel ---------- */
+  .notes { display: flex; flex-direction: column; gap: 12px; }
+  .note-card {
+    background: #fff;
+    border: 1px solid #d3d3d1;
+    border-radius: 12px;
+    padding: 14px 15px;
+  }
+  .note-card.warn { border-style: dashed; background: #fafaf8; }
+  .note-kicker {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    color: #777;
+    margin-bottom: 6px;
+  }
+  .note-card h2 { margin: 0 0 7px; font-size: 15.5px; line-height: 1.35; letter-spacing: -.01em; }
+  .note-card p { margin: 0; font-size: 12.5px; line-height: 1.65; color: #444; }
+  .note-card p + p { margin-top: 7px; }
+  .note-card ul { margin: 0; padding-left: 17px; font-size: 12.5px; line-height: 1.65; color: #444; }
+  .note-card li + li { margin-top: 4px; }
+  .note-card .watch { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #d8d8d6; }
+  .note-card .watch strong { font-weight: 600; }
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .mini-table td { padding: 4px 0; vertical-align: top; line-height: 1.5; border-bottom: 1px solid #efefed; }
+  .mini-table tr:last-child td { border-bottom: 0; }
+  .mini-table td:first-child { color: #777; width: 38%; padding-right: 8px; }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 14px 22px 22px;
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10px;
+    color: #777;
+    letter-spacing: .02em;
+    border-top: 1px solid #dcdcda;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .stage { grid-template-columns: 1fr; padding-top: 20px; gap: 20px; }
+    .notes { max-width: 430px; margin: 0 auto; width: 100%; }
+    .harness-top { flex-direction: column; gap: 9px; }
+    .harness-badge { text-align: left; }
+    .ctrl.reset { margin-left: 0; }
+  }
+  @media (max-width: 430px) {
+    .harness { padding: 12px 14px 14px; }
+    .stage { padding: 16px 12px 18px; }
+    .phone { height: 780px; border-radius: 22px; }
+  }
+
+  /* participant mode: ?participant=1 hides facilitator-only chrome */
+  body.participant .harness,
+  body.participant .notes,
+  body.participant .phone-caption,
+  body.participant .footer { display: none; }
+  body.participant { background: #fff; }
+  body.participant .stage {
+    grid-template-columns: minmax(0, 410px);
+    justify-content: center;
+    padding-top: 40px;
+  }
+</style>
+</head>
+<body>
+<script>
+  if (new URLSearchParams(location.search).get("participant") === "1") {
+    document.body.classList.add("participant");
+  }
+</script>
+
+<header class="harness">
+  <div class="harness-top">
+    <div>
+      <div class="tag">PROTOTYPE · 不是产品 · 抛弃式</div>
+      <h1>A2 · 三级完成度视觉平等</h1>
+      <p class="sub">问题：用户会不会把「微型」读成一种合法完成？· 灰框 · 纯灰度 · 无品牌色 · 2026-11-18</p>
+    </div>
+    <div class="harness-badge">只回答一个问题<br>不测长期动机</div>
+  </div>
+  <div class="controls" role="group" aria-label="原型控制台，仅 facilitator 使用">
+    <div class="control-group">
+      <span class="control-label">版本</span>
+      <button class="ctrl" data-set="version" data-value="A">A · 三级平等</button>
+      <button class="ctrl" data-set="version" data-value="B">B · 有差异（对照）</button>
+    </div>
+    <div class="control-group">
+      <span class="control-label">顺序</span>
+      <button class="ctrl" data-set="order" data-value="desc">大 → 小</button>
+      <button class="ctrl" data-set="order" data-value="asc">小 → 大</button>
+    </div>
+    <div class="control-group">
+      <span class="control-label">状态</span>
+      <button class="ctrl" data-set="state" data-value="default">默认</button>
+      <button class="ctrl" data-set="state" data-value="empty">首次空</button>
+      <button class="ctrl" data-set="state" data-value="interrupted">昨天没做</button>
+      <button class="ctrl" data-set="state" data-value="loading">加载</button>
+      <button class="ctrl" data-set="state" data-value="offline">离线</button>
+      <button class="ctrl" data-set="state" data-value="save-error">保存失败</button>
+      <button class="ctrl" data-set="state" data-value="extreme">第 30 次</button>
+      <button class="ctrl" data-set="state" data-value="complete">完成态 · 微型</button>
+    </div>
+    <button class="ctrl reset" data-action="reset">重置</button>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="phone-column">
+    <div class="phone" id="phone">
+      <div class="statusbar"><span>21:40</span><span class="status-right">●●● 100%</span></div>
+      <div class="screen" id="screen"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <nav class="tabbar" id="tabbar" aria-label="一级区域（本轮只覆盖今天）">
+        <button class="tab" data-action="tab" data-tab="today">今天</button>
+        <button class="tab" data-action="tab" data-tab="habits">习惯</button>
+        <button class="tab" data-action="tab" data-tab="review">回顾</button>
+        <button class="tab" data-action="tab" data-tab="me">我</button>
+      </nav>
+    </div>
+    <p class="phone-caption">390 × 844 · 灰框 · 真实示例内容（非 Lorem Ipsum）</p>
+  </section>
+
+  <aside class="notes">
+    <div class="note-card">
+      <div class="note-kicker">本轮问题</div>
+      <h2>微型算不算「完成」？</h2>
+      <p>检验 A2：三级完成度视觉平等不降低完成动机。这个原型只测第一层——用户是否把「微型」读成合法完成。14 天后的动机，原型测不了。</p>
+    </div>
+
+    <div class="note-card" id="state-notes"></div>
+
+    <div class="note-card warn">
+      <div class="note-kicker">不要做</div>
+      <ul>
+        <li>不要解释「我们在测三级平等」</li>
+        <li>不要问「你觉得哪个好看」</li>
+        <li>不要引导用户选微型</li>
+        <li>不要在被试面前使用顶部控制台</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <div class="note-kicker">A / B 只变什么</div>
+      <table class="mini-table">
+        <tr><td>不变</td><td>文案「选哪一档都算今天完成」、三档动作、体感步骤、记录计数语义</td></tr>
+        <tr><td>变</td><td>视觉权重（填充/边框）、完成态圆环深度、完成文案（今天算数 vs 部分完成）</td></tr>
+      </table>
+      <p style="margin-top:8px;color:#6b6b69;font-size:11.5px;">如果 A/B 结果相同，不能说「视觉平等有效」——文案两版都有，可能是文案在做功。B 是复合对照臂（视觉权重 + 完成文案 + 圆环深度），不能单独归因到某一项。</p>
+    </div>
+
+    <div class="note-card">
+      <div class="note-kicker">施测顺序</div>
+      <p>3 人先 A（大→小），2 人先 A（小→大）；主判定只用首轮 A。随后 B 版用同一顺序重复。顺序进编码表；若两种顺序结果翻转，A2 判「未定」。</p>
+    </div>
+
+    <div class="note-card">
+      <div class="note-kicker">测不了</div>
+      <p>14 天回访、真实羞耻感、长期动机、习惯是否真的养成、真实中断后的回归行为。需要试点 / 纵向研究。</p>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <span>Prototype Designer · product-studio-eval case-01 · 2026-11-18</span>
+  <span>这是抛弃式原型，不是生产代码。</span>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var habits = {
+    reading: {
+      name: "晚读",
+      anchor: "洗完碗，水壶还热着",
+      levels: {
+        full: { action: "读 10 页《万历十五年》", time: "约 10 分钟" },
+        simplified: { action: "读 1 页", time: "约 1 分钟" },
+        mini: { action: "读一句话", time: "约 10 秒" }
+      }
+    },
+    walking: {
+      name: "早起散步",
+      anchor: "送完孩子，绕小区一圈",
+      levels: {
+        full: { action: "绕小区走 20 分钟", time: "约 20 分钟" },
+        simplified: { action: "走到小区门口再回来", time: "约 6 分钟" },
+        mini: { action: "下楼站 3 分钟，晒到太阳", time: "约 3 分钟" }
+      }
+    },
+    sitting: {
+      name: "睡前静坐",
+      anchor: "手机放到客厅充电后",
+      levels: {
+        full: { action: "静坐 10 分钟", time: "约 10 分钟" },
+        simplified: { action: "静坐 3 分钟", time: "约 3 分钟" },
+        mini: { action: "关灯后做 3 次深呼吸", time: "约 30 秒" }
+      }
+    }
+  };
+
+  var stateNotes = {
+    "default": {
+      title: "默认 · 今天的决策点",
+      body: "让被试在「忙」的场景里自己选一档。不要提示选哪档，也不要说「随便选」。",
+      watch: "<strong>记录：</strong>选哪档、犹豫几秒、第一句话、有没有问「有什么区别」或「哪个是推荐」。"
+    },
+    "empty": {
+      title: "首次空 · 引导行动",
+      body: "看被试是否知道从哪里开始；会不会问「只能选这些吗」「之后能改吗」。",
+      watch: "<strong>记录：</strong>选哪个建议、有没有犹豫、是否理解「之后可以改」。"
+    },
+    "interrupted": {
+      title: "昨天没做 · 中性回归",
+      body: "本轮 A2 判定不使用这个状态。只看三档平等是否在这里被打破。",
+      watch: "<strong>记录：</strong>有没有提到羞耻/被放任（A5 线索）；有没有要求「补记昨天」。"
+    },
+    "loading": {
+      title: "加载 · 骨架屏",
+      body: "看被试等待时做什么；约 1.6 秒后自动进入默认态。IA 没有定义「加载失败」，这是本轮不测的状态。",
+      watch: "<strong>记录：</strong>是否反复点击、是否问「卡住了吗」。"
+    },
+    "offline": {
+      title: "离线 · 本地优先",
+      body: "选一档后，完成态应显示「已记在本机，联网后自动同步」。",
+      watch: "<strong>记录：</strong>是否相信记录还在；是否去找同步按钮。"
+    },
+    "save-error": {
+      title: "保存失败 · 就地恢复",
+      body: "看被试是否理解「刚才那次打卡还在」，会选择重试还是稍后。",
+      watch: "<strong>记录：</strong>有没有担心记录丢了；有没有问「稍后是什么时候」。"
+    },
+    "extreme": {
+      title: "第 30 次 · 一次性反思",
+      body: "不是连续 30 天，是 30 次记录。看反思条是否像压力，而不是成就。",
+      watch: "<strong>记录：</strong>有没有把 30 读成「不能断」；是否主动收起。"
+    },
+    "complete": {
+      title: "完成态 · 关键判定",
+      body: "A 平等版：三档的圆环、对勾、「今天算数」完全一样；B 对照版：微型显示「部分完成」、圆环更浅。",
+      watch: "<strong>关键问题：</strong>「这算完成吗？」记录是否找「部分完成」；有没有说「这也算？」。"
+    },
+    "final": {
+      title: "最终态 · 记录已留下",
+      body: "体感步骤本轮只做流程完整性，不测 A3。看被试是否理解可以撤销。",
+      watch: "<strong>记录：</strong>是否问「明天呢」；是否注意到计数。"
+    },
+    "tab-notice": {
+      title: "其他一级区域 · 本轮不测",
+      body: "习惯 / 回顾 / 我不在原型范围内。这是明确的边界，不是 dead end。回到今天会重置到默认态；跨 tab 的状态保持本轮不测。",
+      watch: "<strong>记录：</strong>被试是否在找习惯列表或回顾（IA 线索）。"
+    }
+  };
+
+  var app = {
+    version: "A",
+    order: "desc",
+    state: "default",
+    habit: "reading",
+    selected: null,
+    sensation: null,
+    queued: false,
+    fromInterrupted: false,
+    originState: "default",
+    recordCount: 12,
+    reflectionDismissed: false,
+    tabNotice: null,
+    activeTab: "today"
+  };
+
+  // URL injection for participant mode / repeatable runs:
+  // ?participant=1&version=B&order=asc&state=complete&habit=walking
+  (function applyParams() {
+    var params = new URLSearchParams(location.search);
+    var version = params.get("version");
+    var order = params.get("order");
+    var state = params.get("state");
+    var habit = params.get("habit");
+    if (version === "A" || version === "B") app.version = version;
+    if (order === "desc" || order === "asc") app.order = order;
+    if (habit && habits[habit]) app.habit = habit;
+    if (state && stateNotes[state]) {
+      app.state = state;
+      if (state === "tab-notice") app.tabNotice = params.get("tab") || "habits";
+      if (state === "complete" || state === "final") app.selected = params.get("level") || "mini";
+      if (state === "offline" || state === "save-error") app.queued = true;
+    }
+  })();
+
+  var timers = [];
+  var toastTimer = null;
+
+  function clearTimers() {
+    timers.forEach(function (t) { clearTimeout(t); });
+    timers = [];
+  }
+
+  function showToast(msg) {
+    var el = document.getElementById("toast");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove("show"); }, 1800);
+  }
+
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+    });
+  }
+
+  function optionHTML(level) {
+    var l = habits[app.habit].levels[level];
+    return '<button class="option ' + level + '" data-action="choose" data-level="' + level + '">' +
+      '<span class="action">' + escapeHTML(l.action) + '</span>' +
+      '<span class="time">' + escapeHTML(l.time) + '</span>' +
+      '</button>';
+  }
+
+  function ringSVG(percent, tone) {
+    var r = 54;
+    var c = 2 * Math.PI * r;
+    var offset = c * (1 - percent / 100);
+    return '<svg class="ring" width="132" height="132" viewBox="0 0 132 132" aria-hidden="true">' +
+      '<circle cx="66" cy="66" r="' + r + '" fill="none" stroke="#e6e6e4" stroke-width="8"/>' +
+      '<circle cx="66" cy="66" r="' + r + '" fill="none" stroke="' + tone + '" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="' + offset + '" transform="rotate(-90 66 66)"/>' +
+      '<text x="66" y="73" text-anchor="middle" font-size="26" fill="' + tone + '">✓</text>' +
+      '</svg>';
+  }
+
+  function todayHTML(banner) {
+    var h = habits[app.habit];
+    var order = app.order === "desc" ? ["full", "simplified", "mini"] : ["mini", "simplified", "full"];
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      (banner || "") +
+      '<div class="habit-block">' +
+        '<h2 class="habit-title">' + escapeHTML(h.name) + '</h2>' +
+        '<p class="anchor">' + escapeHTML(h.anchor) + '</p>' +
+      '</div>' +
+      '<div class="prompt-block">' +
+        '<h3 class="prompt">今天做哪一档？</h3>' +
+        '<p class="prompt-sub">选哪一档都算今天完成。</p>' +
+      '</div>' +
+      '<div class="options">' + order.map(optionHTML).join("") + '</div>';
+  }
+
+  function emptyHTML() {
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      '<div class="empty-block">' +
+        '<h2 class="empty-title">还没有习惯</h2>' +
+        '<p class="empty-body">先从一个你想做的小事开始。不用一次设好三级阶梯，之后可以改。</p>' +
+      '</div>' +
+      '<div class="suggestions">' +
+        '<button class="suggestion" data-action="suggest" data-habit="reading"><span class="s-name">晚读</span><span class="s-start">从「读一句话」开始</span></button>' +
+        '<button class="suggestion" data-action="suggest" data-habit="walking"><span class="s-name">早起散步</span><span class="s-start">从「下楼站 3 分钟」开始</span></button>' +
+        '<button class="suggestion" data-action="suggest" data-habit="sitting"><span class="s-name">睡前静坐</span><span class="s-start">从「3 次深呼吸」开始</span></button>' +
+      '</div>' +
+      '<p class="empty-foot">选一个，今天就能开始。</p>';
+  }
+
+  function loadingHTML() {
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      '<div class="skeleton-title"></div>' +
+      '<div class="skeleton-line short"></div>' +
+      '<div class="skeleton-line"></div>' +
+      '<div class="skeleton-card"></div>' +
+      '<div class="skeleton-card"></div>' +
+      '<div class="skeleton-card"></div>' +
+      '<p class="loading-label">正在读取今天的记录…</p>';
+  }
+
+  function saveErrorHTML() {
+    var l = habits[app.habit].levels[app.selected || "mini"];
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      '<div class="error-block">' +
+        '<h2 class="error-title">没有保存成功</h2>' +
+        '<p class="error-body">刚才那次打卡还在：<strong>' + escapeHTML(l.action) + '</strong>。再试一次，或稍后再说。</p>' +
+      '</div>' +
+      '<div class="error-actions">' +
+        '<button class="btn-primary" data-action="retry">再试一次</button>' +
+        '<button class="btn-secondary" data-action="later">稍后再说</button>' +
+      '</div>' +
+      '<p class="error-foot">稍后再说会先把记录留在本机，联网后再同步。</p>';
+  }
+
+  function completeHTML() {
+    var l = habits[app.habit].levels[app.selected || "mini"];
+    var isA = app.version === "A";
+    var percent = isA ? 100 : ({ full: 100, simplified: 62, mini: 30 }[app.selected] || 0);
+    var tone = isA ? "#1a1a1a" : ({ full: "#1a1a1a", simplified: "#777775", mini: "#b6b6b4" }[app.selected] || "#1a1a1a");
+    var title;
+    if (isA) {
+      title = app.fromInterrupted ? "回来了。今天算数。" : "今天算数";
+    } else {
+      title = (app.fromInterrupted ? "回来了。" : "") + ({ full: "完成", simplified: "完成（简化）", mini: "部分完成" }[app.selected] || "完成");
+    }
+    var queued = app.queued
+      ? '<div class="queued">已记在本机，联网后自动同步<span class="tag-small">待同步</span></div>'
+      : "";
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      '<div class="complete-wrap">' +
+        ringSVG(percent, tone) +
+        '<h2 class="complete-title">' + title + '</h2>' +
+        '<p class="complete-sub">你选的是：' + escapeHTML(l.action) + '</p>' +
+        '<p class="complete-count">第 ' + app.recordCount + ' 次记录</p>' +
+        queued +
+        '<div class="sensation">' +
+          '<p class="sensation-q">身体有什么感觉？</p>' +
+          '<div class="chips">' +
+            '<button class="chip" data-action="sensation" data-value="肩膀松了">肩膀松了</button>' +
+            '<button class="chip" data-action="sensation" data-value="呼吸变慢">呼吸变慢</button>' +
+            '<button class="chip" data-action="sensation" data-value="脑子安静一点">脑子安静一点</button>' +
+            '<button class="chip" data-action="sensation" data-value="有点累但踏实">有点累但踏实</button>' +
+            '<button class="chip skip" data-action="sensation" data-value="skip">跳过</button>' +
+          '</div>' +
+        '</div>' +
+        '<button class="undo" data-action="undo">改一下</button>' +
+      '</div>';
+  }
+
+  function finalHTML() {
+    var l = habits[app.habit].levels[app.selected || "mini"];
+    var sensation = app.sensation && app.sensation !== "skip" ? app.sensation : null;
+    var finalSub;
+    if (app.version === "A") {
+      finalSub = "今天算数。";
+    } else {
+      finalSub = ({ full: "完成。", simplified: "完成（简化）。", mini: "部分完成。" }[app.selected] || "完成。");
+    }
+    return '<div class="screen-head">今天 · 11 月 18 日</div>' +
+      '<div class="complete-wrap final">' +
+        '<h2 class="final-title">记下了。</h2>' +
+        '<p class="final-sub">' + finalSub + '</p>' +
+        '<p class="final-detail">你选的是：' + escapeHTML(l.action) + '</p>' +
+        '<p class="complete-count">第 ' + app.recordCount + ' 次记录</p>' +
+        '<p class="final-sensation">' + (sensation ? '身体：' + escapeHTML(sensation) : '体感：这轮跳过') + '</p>' +
+        (app.queued ? '<div class="queued">已记在本机，联网后自动同步<span class="tag-small">待同步</span></div>' : '') +
+        '<div class="final-actions">' +
+          '<button class="btn-secondary" data-action="undo">撤销这次记录</button>' +
+          '<button class="btn-primary" data-action="today">回到今天</button>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function tabNoticeHTML() {
+    var labels = { habits: "习惯", review: "回顾", me: "我" };
+    return '<div class="notice-block">' +
+      '<h2 class="notice-title">这轮原型只覆盖「今天」屏</h2>' +
+      '<p class="notice-body">「' + (labels[app.tabNotice] || "这个区域") + '」还没有做进这个原型。今天屏是本轮唯一要回答的问题。</p>' +
+      '<button class="btn-primary" data-action="today">回到今天</button>' +
+      '</div>';
+  }
+
+  function reflectionBanner() {
+    if (app.reflectionDismissed) return "";
+    return '<div class="banner banner-reflection">' +
+      '<span class="banner-label">一次性反思 · 不是连续天数</span>' +
+      '这是你第 30 次记录。不是连续 30 天，是 30 次这样的小事。' +
+      '<br><button class="dismiss" data-action="dismiss-reflection">收起</button>' +
+      '</div>';
+  }
+
+  function renderScreen() {
+    switch (app.state) {
+      case "default": return todayHTML("");
+      case "empty": return emptyHTML();
+      case "interrupted": return todayHTML('<div class="banner">昨天没有记录。今天从哪一档开始都算数。</div>');
+      case "loading": return loadingHTML();
+      case "offline": return todayHTML('<div class="banner banner-offline"><span class="banner-label">离线</span>记录会先保存在本机，联网后自动同步。</div>');
+      case "save-error": return saveErrorHTML();
+      case "extreme": return todayHTML(reflectionBanner());
+      case "complete": return completeHTML();
+      case "final": return finalHTML();
+      case "tab-notice": return tabNoticeHTML();
+      default: return todayHTML("");
+    }
+  }
+
+  function renderNotes() {
+    var note = stateNotes[app.state] || stateNotes["default"];
+    var extra = "";
+    if (app.state === "complete" && app.version === "A") {
+      extra = '<p class="watch"><strong>平等版检查：</strong>微型档的圆环、对勾、「今天算数」、计数是否与完整档完全一样？被试有没有找「部分完成」？</p>';
+    }
+    if (app.state === "complete" && app.version === "B") {
+      extra = '<p class="watch"><strong>对照版检查：</strong>微型显示「部分完成」、圆环 30%。被试是否因此说「这不算」？这是基线，不单独判定 A2。</p>';
+    }
+    document.getElementById("state-notes").innerHTML =
+      '<div class="note-kicker">当前状态</div>' +
+      '<h2>' + note.title + '</h2>' +
+      '<p>' + note.body + '</p>' +
+      '<p class="watch">' + note.watch + '</p>' +
+      extra;
+  }
+
+  function renderControls() {
+    var groups = { version: app.version, order: app.order };
+    Array.prototype.forEach.call(document.querySelectorAll("[data-set]"), function (b) {
+      var set = b.getAttribute("data-set");
+      var value = b.getAttribute("data-value");
+      var active = false;
+      if (set === "version") active = value === app.version;
+      else if (set === "order") active = value === app.order;
+      else if (set === "state") {
+        active = value === app.state;
+        if (value === "complete") {
+          active = (app.state === "complete" || app.state === "final") && app.selected === "mini";
+        }
+      }
+      b.classList.toggle("active", active);
+    });
+  }
+
+  function renderTabs() {
+    Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (b) {
+      var tab = b.getAttribute("data-tab");
+      var active;
+      if (app.state === "tab-notice") active = tab === app.tabNotice;
+      else active = tab === "today";
+      b.classList.toggle("active", active);
+    });
+  }
+
+  function render() {
+    var screen = document.getElementById("screen");
+    screen.className = "screen version-" + app.version;
+    screen.innerHTML = renderScreen();
+    renderNotes();
+    renderControls();
+    renderTabs();
+  }
+
+  function resetFlow(newState) {
+    clearTimers();
+    app.state = newState;
+    app.selected = null;
+    app.sensation = null;
+    app.queued = false;
+    app.fromInterrupted = false;
+    app.originState = "default";
+    app.recordCount = 12;
+    app.habit = "reading";
+    app.activeTab = "today";
+    app.tabNotice = null;
+  }
+
+  function goState(value) {
+    resetFlow(value);
+    if (value === "extreme") {
+      app.recordCount = 30;
+      app.reflectionDismissed = false;
+    }
+    if (value === "save-error") {
+      app.selected = "mini";
+    }
+    if (value === "complete") {
+      app.selected = "mini";
+    }
+    if (value === "loading") {
+      timers.push(setTimeout(function () {
+        if (app.state === "loading") {
+          app.state = "default";
+          render();
+        }
+      }, 1600));
+    }
+    render();
+  }
+
+  function choose(level) {
+    var origin = app.state;
+    if (["default", "interrupted", "offline", "extreme"].indexOf(origin) === -1) return;
+    app.originState = origin;
+    app.selected = level;
+    app.sensation = null;
+    app.queued = origin === "offline";
+    app.fromInterrupted = origin === "interrupted";
+    app.recordCount = origin === "extreme" ? 30 : 12;
+    app.state = "complete";
+    render();
+  }
+
+  function setSensation(value) {
+    app.sensation = value;
+    app.state = "final";
+    render();
+  }
+
+  function undo() {
+    var origin = app.originState || "default";
+    var dismissed = app.reflectionDismissed;
+    clearTimers();
+    app.state = origin;
+    app.selected = null;
+    app.sensation = null;
+    app.queued = false;
+    app.fromInterrupted = false;
+    app.recordCount = origin === "extreme" ? 30 : 12;
+    app.reflectionDismissed = dismissed;
+    app.activeTab = "today";
+    render();
+  }
+
+  function retry() {
+    app.state = "complete";
+    app.queued = false;
+    render();
+    showToast("已保存");
+  }
+
+  function later() {
+    app.state = "complete";
+    app.queued = true;
+    render();
+  }
+
+  function suggest(key) {
+    app.habit = key;
+    app.state = "default";
+    app.selected = null;
+    app.sensation = null;
+    app.queued = false;
+    app.fromInterrupted = false;
+    app.recordCount = 12;
+    app.activeTab = "today";
+    render();
+    showToast("已加入：" + habits[key].name);
+  }
+
+  function switchTab(tab) {
+    clearTimers();
+    if (tab === "today") {
+      app.state = "default";
+      app.selected = null;
+      app.sensation = null;
+      app.queued = false;
+      app.fromInterrupted = false;
+      app.activeTab = "today";
+      app.tabNotice = null;
+      render();
+      return;
+    }
+    app.state = "tab-notice";
+    app.tabNotice = tab;
+    app.activeTab = tab;
+    render();
+  }
+
+  function goToday() {
+    clearTimers();
+    app.state = "default";
+    app.selected = null;
+    app.sensation = null;
+    app.queued = false;
+    app.fromInterrupted = false;
+    app.recordCount = 12;
+    app.activeTab = "today";
+    app.tabNotice = null;
+    render();
+  }
+
+  function reset() {
+    clearTimers();
+    app.version = "A";
+    app.order = "desc";
+    app.state = "default";
+    app.habit = "reading";
+    app.selected = null;
+    app.sensation = null;
+    app.queued = false;
+    app.fromInterrupted = false;
+    app.originState = "default";
+    app.recordCount = 12;
+    app.reflectionDismissed = false;
+    app.tabNotice = null;
+    app.activeTab = "today";
+    render();
+  }
+
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-action], [data-set]");
+    if (!el) return;
+
+    var set = el.getAttribute("data-set");
+    if (set === "version") {
+      clearTimers();
+      app.version = el.getAttribute("data-value");
+      app.state = "default";
+      app.selected = null;
+      app.sensation = null;
+      app.queued = false;
+      app.fromInterrupted = false;
+      app.activeTab = "today";
+      render();
+      return;
+    }
+    if (set === "order") {
+      app.order = el.getAttribute("data-value");
+      render();
+      return;
+    }
+    if (set === "state") {
+      goState(el.getAttribute("data-value"));
+      return;
+    }
+
+    switch (el.getAttribute("data-action")) {
+      case "choose": choose(el.getAttribute("data-level")); break;
+      case "sensation": setSensation(el.getAttribute("data-value")); break;
+      case "undo": undo(); break;
+      case "retry": retry(); break;
+      case "later": later(); break;
+      case "suggest": suggest(el.getAttribute("data-habit")); break;
+      case "tab": switchTab(el.getAttribute("data-tab")); break;
+      case "today": goToday(); break;
+      case "reset": reset(); break;
+      case "dismiss-reflection": app.reflectionDismissed = true; render(); break;
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

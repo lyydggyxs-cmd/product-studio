@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>状态 · 加载 / 保存失败 / 离线</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="states.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-book" viewBox="0 0 24 24">
+    <path d="M4 5.5c3-1.2 5.4-1.2 8 0 2.6-1.2 5-1.2 8 0v13c-3-1.2-5.4-1.2-8 0-2.6-1.2-5-1.2-8 0v-13z"/>
+    <path d="M12 5.5v13"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/>
+  </symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24">
+    <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/>
+    <path d="M3 12l9 4.5 9-4.5"/>
+    <path d="M3 16.5L12 21l9-4.5"/>
+  </symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24">
+    <path d="M4 20v-8M10 20V5M16 20v-5M21 20H3"/>
+  </symbol>
+  <symbol id="i-person" viewBox="0 0 24 24">
+    <circle cx="12" cy="8" r="3.5"/>
+    <path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <path d="M4.5 12.5l5 5 10-11"/>
+  </symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24">
+    <path d="M7 18h10a4 4 0 0 0 .7-7.9A6 6 0 0 0 6.2 11 3.5 3.5 0 0 0 7 18z"/>
+  </symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 7.5v5.5"/>
+    <circle cx="12" cy="16.5" r="1" fill="currentColor" stroke="none"/>
+  </symbol>
+</svg>
+
+<main class="state-sheet">
+
+  <!-- 状态 01 · 加载中 -->
+  <section class="state-col" aria-label="加载中">
+    <p class="state-col__label">状态 01 · 加载中</p>
+    <div class="screen" aria-busy="true">
+
+      <div class="statusbar" aria-hidden="true">
+        <span class="statusbar__time">9:41</span>
+        <span class="statusbar__icons">
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="9" width="2.4" height="4" rx="1"/><rect x="4.6" y="7" width="2.4" height="6" rx="1"/><rect x="8.2" y="5" width="2.4" height="8" rx="1"/><rect x="11.8" y="3" width="2.4" height="10" rx="1"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><path d="M2 6.2a9 9 0 0 1 12 0" fill="none"/><path d="M4.4 8.8a5.6 5.6 0 0 1 7.2 0" fill="none"/><circle cx="8" cy="11.6" r="1.2" stroke="none"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="4.5" width="12" height="7" rx="2" fill="none"/><rect x="2.8" y="6.3" width="8.4" height="3.4" rx="1" stroke="none"/><path d="M14.6 7v2" fill="none"/></svg>
+        </span>
+      </div>
+
+      <header class="page-head">
+        <p class="eyebrow">11月17日 · 周二</p>
+        <h1 class="page-title">今天</h1>
+        <p class="page-sub">三件小事，做完一件算一件。</p>
+      </header>
+
+      <div class="skeleton skeleton--row" aria-hidden="true"></div>
+
+      <section class="hero-card" aria-hidden="true">
+        <div class="hero-main">
+          <span class="skeleton skeleton--circle"></span>
+          <div class="hero-info">
+            <div class="skeleton skeleton--line skeleton--line-short"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--line skeleton--line-short"></div>
+          </div>
+        </div>
+        <div class="versions">
+          <span class="skeleton skeleton--chip"></span>
+          <span class="skeleton skeleton--chip"></span>
+          <span class="skeleton skeleton--chip"></span>
+        </div>
+        <div class="skeleton skeleton--button"></div>
+      </section>
+
+      <div class="skeleton skeleton--row" aria-hidden="true"></div>
+      <div class="skeleton skeleton--row" aria-hidden="true"></div>
+
+      <nav class="tabbar" aria-label="一级导航">
+        <a class="tab is-active" href="#" aria-current="page">
+          <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+          <span>今天</span>
+        </a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>习惯</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span>回顾</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><span>我</span></a>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- 状态 02 · 保存失败 -->
+  <section class="state-col" aria-label="保存失败">
+    <p class="state-col__label">状态 02 · 保存失败</p>
+    <div class="screen">
+
+      <div class="statusbar" aria-hidden="true">
+        <span class="statusbar__time">9:41</span>
+        <span class="statusbar__icons">
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="9" width="2.4" height="4" rx="1"/><rect x="4.6" y="7" width="2.4" height="6" rx="1"/><rect x="8.2" y="5" width="2.4" height="8" rx="1"/><rect x="11.8" y="3" width="2.4" height="10" rx="1"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><path d="M2 6.2a9 9 0 0 1 12 0" fill="none"/><path d="M4.4 8.8a5.6 5.6 0 0 1 7.2 0" fill="none"/><circle cx="8" cy="11.6" r="1.2" stroke="none"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="4.5" width="12" height="7" rx="2" fill="none"/><rect x="2.8" y="6.3" width="8.4" height="3.4" rx="1" stroke="none"/><path d="M14.6 7v2" fill="none"/></svg>
+        </span>
+      </div>
+
+      <header class="page-head">
+        <p class="eyebrow">11月17日 · 周二</p>
+        <h1 class="page-title">今天</h1>
+        <p class="page-sub">三件小事，做完一件算一件。</p>
+      </header>
+
+      <div class="state-card">
+        <div class="state-card__icon" aria-hidden="true">
+          <svg class="icon"><use href="#i-alert"/></svg>
+        </div>
+        <h2 class="state-card__title">这次没记上</h2>
+        <p class="state-card__text">数据还在本机，没有丢。重试一下就好。</p>
+        <button class="btn-primary" type="button">重试</button>
+        <button class="btn-ghost" type="button">稍后再说</button>
+      </div>
+
+      <nav class="tabbar" aria-label="一级导航">
+        <a class="tab is-active" href="#" aria-current="page">
+          <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+          <span>今天</span>
+        </a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>习惯</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span>回顾</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><span>我</span></a>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- 状态 03 · 离线 -->
+  <section class="state-col" aria-label="离线">
+    <p class="state-col__label">状态 03 · 离线（本地待同步）</p>
+    <div class="screen">
+
+      <div class="statusbar" aria-hidden="true">
+        <span class="statusbar__time">9:41</span>
+        <span class="statusbar__icons">
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="9" width="2.4" height="4" rx="1"/><rect x="4.6" y="7" width="2.4" height="6" rx="1"/><rect x="8.2" y="5" width="2.4" height="8" rx="1"/><rect x="11.8" y="3" width="2.4" height="10" rx="1"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><path d="M2 6.2a9 9 0 0 1 12 0" fill="none"/><path d="M4.4 8.8a5.6 5.6 0 0 1 7.2 0" fill="none"/><circle cx="8" cy="11.6" r="1.2" stroke="none"/></svg>
+          <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="4.5" width="12" height="7" rx="2" fill="none"/><rect x="2.8" y="6.3" width="8.4" height="3.4" rx="1" stroke="none"/><path d="M14.6 7v2" fill="none"/></svg>
+        </span>
+      </div>
+
+      <header class="page-head">
+        <p class="eyebrow">11月17日 · 周二</p>
+        <h1 class="page-title">今天</h1>
+        <p class="page-sub">三件小事，做完一件算一件。</p>
+      </header>
+
+      <div class="offline-banner" role="status">
+        <svg class="offline-banner__icon" aria-hidden="true"><use href="#i-cloud"/></svg>
+        <div class="offline-banner__body">
+          <p class="offline-banner__title">离线中</p>
+          <p class="offline-banner__text">记下会先留在本机，联网后自动同步。不用现在处理。</p>
+        </div>
+      </div>
+
+      <section class="hero-card" aria-labelledby="offline-hero-name">
+        <div class="hero-main">
+          <div class="arc">
+            <svg viewBox="0 0 148 148" role="img" aria-label="今天完成 1 件，共 3 件">
+              <circle class="arc__track" cx="74" cy="74" r="68" pathLength="100"></circle>
+              <circle class="arc__fill" cx="74" cy="74" r="68" pathLength="100" stroke-dasharray="33.33 100" transform="rotate(-90 74 74)"></circle>
+              <line class="arc__tick" x1="74" y1="14" x2="74" y2="0"></line>
+              <line class="arc__tick" x1="126" y1="104" x2="138.1" y2="111"></line>
+              <line class="arc__tick" x1="22" y1="104" x2="9.9" y2="111"></line>
+            </svg>
+            <div class="arc__center" aria-hidden="true">
+              <span class="arc__num">1<small>/3</small></span>
+              <span class="arc__caption">今天</span>
+            </div>
+          </div>
+
+          <div class="hero-info">
+            <div class="habit-id">
+              <span class="icon-badge"><svg class="icon icon--md"><use href="#i-book"/></svg></span>
+              <h2 class="hero-name" id="offline-hero-name">晚读</h2>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">触发</span>
+              <p class="meta-text">洗完碗，水壶还热着</p>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">近七天</span>
+              <p class="meta-text meta-value">5 / 7 <span class="meta-text--muted">天</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="versions" role="radiogroup" aria-label="选择今天的版本">
+          <button class="version" type="button" role="radio" aria-checked="false">
+            <svg class="icon version__check" aria-hidden="true"><use href="#i-check"/></svg>
+            <span class="version__label">完整</span><span class="version__sub">20 分钟</span>
+          </button>
+          <button class="version is-selected" type="button" role="radio" aria-checked="true">
+            <svg class="icon version__check" aria-hidden="true"><use href="#i-check"/></svg>
+            <span class="version__label">简化</span><span class="version__sub">5 分钟</span>
+          </button>
+          <button class="version" type="button" role="radio" aria-checked="false">
+            <svg class="icon version__check" aria-hidden="true"><use href="#i-check"/></svg>
+            <span class="version__label">微型</span><span class="version__sub">翻开书</span>
+          </button>
+        </div>
+
+        <button class="btn-primary" type="button">记下：简化版 · 5 分钟</button>
+        <div class="sync-chip" role="status">
+          <span class="sync-chip__dot" aria-hidden="true"></span>
+          <span>待同步 · 1 条，联网后自动处理</span>
+        </div>
+      </section>
+
+      <nav class="tabbar" aria-label="一级导航">
+        <a class="tab is-active" href="#" aria-current="page">
+          <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+          <span>今天</span>
+        </a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>习惯</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span>回顾</span></a>
+        <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><span>我</span></a>
+      </nav>
+
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

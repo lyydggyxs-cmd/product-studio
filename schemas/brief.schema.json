@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "brief.schema.json",
+  "title": "Product Brief",
+  "description": "项目入口：我们到底在解决什么问题、为谁、边界在哪。",
+  "type": "object",
+  "required": [
+    "product",
+    "question",
+    "target_user",
+    "constraints",
+    "success_definition",
+    "scope",
+    "non_goals"
+  ],
+  "properties": {
+    "product": {
+      "type": "string",
+      "description": "产品/项目名称"
+    },
+    "question": {
+      "type": "string",
+      "description": "一句话描述当前要回答的产品问题，不是解决方案"
+    },
+    "target_user": {
+      "type": "string",
+      "description": "为谁做——具体到角色、场景、约束"
+    },
+    "context": {
+      "type": "string",
+      "description": "已有材料、历史决策、领域背景"
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "时间、资源、平台、合规、品牌等真实约束"
+    },
+    "success_definition": {
+      "type": "string",
+      "description": "什么算成功——用户行为/结果的改变，不是交付了什么东西"
+    },
+    "scope": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本期明确要做的范围"
+    },
+    "non_goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本期明确不做的范围"
+    },
+    "kill_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "什么情况下停下来，不继续投入"
+    },
+    "deadline": {
+      "type": "string",
+      "description": "时间盒：本轮什么时候必须做判断"
+    }
+  },
+  "additionalProperties": false
+}

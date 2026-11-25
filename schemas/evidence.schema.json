@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.schema.json",
+  "title": "Evidence Item",
+  "description": "一条可追溯的证据。没有来源的结论必须标为 guess，不得冒充已验证。",
+  "type": "object",
+  "required": [
+    "id",
+    "claim",
+    "status",
+    "source",
+    "source_type",
+    "implication_if_wrong"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^E[0-9]+$",
+      "description": "证据 ID，例如 E12"
+    },
+    "claim": {
+      "type": "string",
+      "description": "这条证据支持的结论，一句话"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["verified", "assumed", "guess"],
+      "description": "verified=✅ 直接证据；assumed=⚠️ 间接/推断；guess=🔮 猜测"
+    },
+    "source": {
+      "type": "string",
+      "description": "来源：URL、文件、访谈编号、数据集名称"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["primary", "secondary", "inference", "none"],
+      "description": "primary=一手；secondary=二手；inference=逻辑推断；none=无来源"
+    },
+    "confidence_note": {
+      "type": "string",
+      "description": "为什么是这个置信度，样本/方法的局限"
+    },
+    "implication_if_wrong": {
+      "type": "string",
+      "description": "如果这条证据错了，对产品决策的影响"
+    },
+    "related_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "这条证据关联的开放问题 ID"
+    }
+  },
+  "additionalProperties": false
+}

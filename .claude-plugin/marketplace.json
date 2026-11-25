@@ -1,0 +1,23 @@
+{
+  "name": "product-studio-marketplace",
+  "description": "Product Studio plugin marketplace.",
+  "owner": {
+    "name": "madman"
+  },
+  "plugins": [
+    {
+      "name": "product-studio",
+      "source": "./",
+      "description": "A team of specialist AI agents for product discovery, definition, IA, prototyping and product UI design.",
+      "category": "productivity",
+      "keywords": [
+        "product-management",
+        "product-design",
+        "ux",
+        "research",
+        "prototyping",
+        "prd"
+      ]
+    }
+  ]
+}

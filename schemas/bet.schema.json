@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bet.schema.json",
+  "title": "Product Bet",
+  "description": "一个可证伪的产品赌注。一次只赌一个。",
+  "type": "object",
+  "required": [
+    "id",
+    "statement",
+    "mechanism",
+    "evidence_ids",
+    "confidence",
+    "success_signal",
+    "kill_signal",
+    "plan_b"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^B[0-9]+$",
+      "description": "赌注 ID，例如 B1"
+    },
+    "statement": {
+      "type": "string",
+      "description": "一句话赌注：如果……那么……"
+    },
+    "mechanism": {
+      "type": "string",
+      "description": "为什么这会发生——因果机制，不是功能描述"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "支持/反对这个赌注的证据 ID"
+    },
+    "confidence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "0-10 的信心度；必须说明为什么"
+    },
+    "confidence_note": {
+      "type": "string",
+      "description": "信心度的理由，尤其是最薄弱的环节"
+    },
+    "success_signal": {
+      "type": "string",
+      "description": "观察到什么算赌对了——具体、可测"
+    },
+    "kill_signal": {
+      "type": "string",
+      "description": "观察到什么算赌错了——具体、可测"
+    },
+    "plan_b": {
+      "type": "string",
+      "description": "如果赌错了，具体转向哪里"
+    },
+    "scope": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "为验证这个赌注，本期做什么"
+    },
+    "anti_goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本期明确不做什么，以及为什么"
+    }
+  },
+  "additionalProperties": false
+}

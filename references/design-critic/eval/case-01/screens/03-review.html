@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>回顾 · 日迹</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5L12 21l9-4.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20v-8M10 20V5M16 20v-5M21 20H3"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></symbol>
+</svg>
+
+<main class="screen">
+
+  <div class="statusbar" aria-hidden="true">
+    <span class="statusbar__time">21:30</span>
+    <span class="statusbar__icons">
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="9" width="2.4" height="4" rx="1"/><rect x="4.6" y="7" width="2.4" height="6" rx="1"/><rect x="8.2" y="5" width="2.4" height="8" rx="1"/><rect x="11.8" y="3" width="2.4" height="10" rx="1"/></svg>
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><path d="M2 6.2a9 9 0 0 1 12 0" fill="none"/><path d="M4.4 8.8a5.6 5.6 0 0 1 7.2 0" fill="none"/><circle cx="8" cy="11.6" r="1.2" stroke="none"/></svg>
+      <svg class="statusbar__icon" viewBox="0 0 16 16"><rect x="1" y="4.5" width="12" height="7" rx="2" fill="none"/><rect x="2.8" y="6.3" width="8.4" height="3.4" rx="1" stroke="none"/><path d="M14.6 7v2" fill="none"/></svg>
+    </span>
+  </div>
+
+  <header class="page-head review-head">
+    <p class="eyebrow">11月11日 — 11月17日</p>
+    <h1 class="page-title">这一周</h1>
+    <p class="page-sub">看看这一周，不急着评价它。</p>
+  </header>
+
+  <section class="stat-hero" aria-label="本周完成率">
+    <p class="stat-hero__value">81<span>%</span></p>
+    <p class="stat-hero__caption">
+      <span class="delta">+12%</span>
+      <span>较上周 · 完成 17 / 21 次</span>
+    </p>
+  </section>
+
+  <section class="chart-card" aria-labelledby="chart-title">
+    <div class="chart-card__head">
+      <span class="chart-card__title" id="chart-title">完成次数</span>
+      <span class="chart-card__meta">过去 14 天</span>
+    </div>
+
+    <svg class="chart" viewBox="0 0 278 160" role="img" aria-label="过去十四天每天完成的习惯数：多数天一到三次，中间有一天为零，最近七天共有十七次完成">
+      <line class="chart__grid" x1="6" y1="112" x2="272" y2="112"></line>
+      <path class="chart__area" d="M6.0 56.0 C12.8 65.3 19.6 84.0 26.5 84.0 C33.3 84.0 40.1 28.0 46.9 28.0 C53.7 28.0 60.6 84.0 67.4 84.0 C74.2 84.0 81.0 56.0 87.8 56.0 C94.7 56.0 101.5 112.0 108.3 112.0 C115.1 112.0 121.9 68.4 128.8 56.0 C135.6 43.6 142.4 28.0 149.2 28.0 C156.1 28.0 162.9 56.0 169.7 56.0 C176.5 56.0 183.3 28.0 190.2 28.0 C197.0 28.0 203.8 46.7 210.6 56.0 C217.4 65.3 224.3 84.0 231.1 84.0 C237.9 84.0 244.7 28.0 251.5 28.0 C258.4 28.0 265.2 28.0 272.0 28.0 L272.0 112.0 L6.0 112.0 Z"></path>
+      <path class="chart__line" d="M6.0 56.0 C12.8 65.3 19.6 84.0 26.5 84.0 C33.3 84.0 40.1 28.0 46.9 28.0 C53.7 28.0 60.6 84.0 67.4 84.0 C74.2 84.0 81.0 56.0 87.8 56.0 C94.7 56.0 101.5 112.0 108.3 112.0 C115.1 112.0 121.9 68.4 128.8 56.0 C135.6 43.6 142.4 28.0 149.2 28.0 C156.1 28.0 162.9 56.0 169.7 56.0 C176.5 56.0 183.3 28.0 190.2 28.0 C197.0 28.0 203.8 46.7 210.6 56.0 C217.4 65.3 224.3 84.0 231.1 84.0 C237.9 84.0 244.7 28.0 251.5 28.0 C258.4 28.0 265.2 28.0 272.0 28.0"></path>
+      <circle class="chart__dot" cx="6" cy="56" r="3"></circle>
+      <circle class="chart__dot" cx="149.2" cy="28" r="3"></circle>
+      <circle class="chart__dot chart__dot--today" cx="272" cy="28" r="3"></circle>
+      <text class="chart__label" x="6" y="142" text-anchor="start">11.04</text>
+      <text class="chart__label" x="128.8" y="142" text-anchor="middle">11.10</text>
+      <text class="chart__label chart__label--strong" x="272" y="142" text-anchor="end">今天</text>
+    </svg>
+
+    <div class="chart-foot">
+      <span class="chart-foot__label">每天</span>
+      <svg class="mini-bars" viewBox="0 0 202 64" aria-hidden="true">
+        <rect class="chart__bar" x="0.0" y="8.0" width="14" height="40.0" rx="6"></rect>
+        <rect class="chart__bar chart__bar--quiet" x="31.3" y="21.3" width="14" height="26.7" rx="6"></rect>
+        <rect class="chart__bar" x="62.7" y="8.0" width="14" height="40.0" rx="6"></rect>
+        <rect class="chart__bar chart__bar--quiet" x="94.0" y="21.3" width="14" height="26.7" rx="6"></rect>
+        <rect class="chart__bar chart__bar--quiet" x="125.3" y="34.7" width="14" height="13.3" rx="6"></rect>
+        <rect class="chart__bar" x="156.7" y="8.0" width="14" height="40.0" rx="6"></rect>
+        <rect class="chart__bar" x="188.0" y="8.0" width="14" height="40.0" rx="6"></rect>
+        <text class="chart__label" x="7" y="60" text-anchor="middle">三</text>
+        <text class="chart__label" x="38.3" y="60" text-anchor="middle">四</text>
+        <text class="chart__label" x="69.7" y="60" text-anchor="middle">五</text>
+        <text class="chart__label" x="101" y="60" text-anchor="middle">六</text>
+        <text class="chart__label" x="132.3" y="60" text-anchor="middle">日</text>
+        <text class="chart__label" x="163.7" y="60" text-anchor="middle">一</text>
+        <text class="chart__label chart__label--strong" x="195" y="60" text-anchor="middle">二</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="stat-row" aria-label="本周的两个小统计">
+    <div class="stat-tile">
+      <div class="stat-tile__value">2<small>次</small></div>
+      <p class="stat-tile__label">回来过的次数</p>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile__value">6<small>个词</small></div>
+      <p class="stat-tile__label">身体记下的词</p>
+    </div>
+  </section>
+
+  <section class="quote-card" aria-label="身体高光">
+    <p class="eyebrow">身体说过的话</p>
+    <p class="quote-card__text">“走完那一圈，肩膀是松的。”</p>
+    <p class="quote-card__meta">11 月 12 日 · 早起散步</p>
+  </section>
+
+  <section class="identity" aria-label="身份阶段">
+    <div class="chart-card__head">
+      <span class="chart-card__title">你走到哪儿了</span>
+      <span class="chart-card__meta">不是等级</span>
+    </div>
+    <div class="identity__track">
+      <div class="identity__step">
+        <span class="identity__node"></span>
+        <span class="identity__label">刚开始</span>
+      </div>
+      <div class="identity__step is-current" aria-current="step">
+        <span class="identity__node"></span>
+        <span class="identity__label">有点感觉</span>
+      </div>
+      <div class="identity__step">
+        <span class="identity__node"></span>
+        <span class="identity__label">已经很自然</span>
+      </div>
+    </div>
+    <p class="identity__note">这里不是等级，是一段路。</p>
+  </section>
+
+</main>
+
+<nav class="tabbar" aria-label="一级导航">
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg><span>今天</span></a>
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>习惯</span></a>
+  <a class="tab is-active" href="#" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span>回顾</span></a>
+  <a class="tab" href="#"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><span>我</span></a>
+</nav>
+
+</body>
+</html>

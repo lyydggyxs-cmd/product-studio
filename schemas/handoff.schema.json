@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "handoff.schema.json",
+  "title": "Handoff",
+  "description": "岗位之间的交接。只传指针和问题，不传全文。",
+  "type": "object",
+  "required": [
+    "from",
+    "to",
+    "mode",
+    "task",
+    "read",
+    "question",
+    "expected_output"
+  ],
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "发起岗位"
+    },
+    "to": {
+      "type": "string",
+      "description": "接收岗位"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["sprint", "pair", "role", "review"],
+      "description": "调用模式"
+    },
+    "task": {
+      "type": "string",
+      "description": "这次要做什么，一句话"
+    },
+    "read": {
+      "type": "array",
+      "description": "要读哪些文件、哪几节；禁止默认读全文",
+      "items": {
+        "type": "object",
+        "required": ["file"],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "相对项目根目录的路径"
+          },
+          "sections": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "具体章节/ID 范围；为空表示全文"
+          },
+          "why": {
+            "type": "string",
+            "description": "为什么这个岗位需要读它"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "question": {
+      "type": "string",
+      "description": "这次必须回答的核心问题；不是「做你的工作」"
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "边界和限制"
+    },
+    "expected_output": {
+      "type": "string",
+      "description": "产出写到哪个文件、什么格式"
+    },
+    "deadline": {
+      "type": "string",
+      "description": "什么时候要"
+    }
+  },
+  "additionalProperties": false
+}
