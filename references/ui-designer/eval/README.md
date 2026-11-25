@@ -13,6 +13,7 @@
    - `brief.md`（任务说明）
    - `evidence-base.md`（Research Analyst）
    - `bet-book.md` + `prd.md`（Product Definer）
+   - `requirements.md`（Requirements Analyst；必须包含，否则 R05 / C1–C3 无法被设计处理）
    - `ia-flows.md` + `validation-toolkit.md`（Product Architect）
 2. 用 `product-studio:ui-designer` 执行，给它：
    - 60–75 分钟
@@ -49,11 +50,18 @@
 3. 如果分数下降，回滚或修正。
 4. 不比较不同模型 / 不同输入条件的绝对分；只比较同一条件下的前后变化。
 
-## 已知跨岗位缺口（2026-11-18）
+## 跨岗输入链（2026-11-18 发现，2026-11-25 修复并验证）
 
-- 本 case 建于 Requirements Analyst 之前，输入**不含 `requirements.md`**。
+- 本 case 建于 Requirements Analyst 之前，首轮输入**不含 `requirements.md`**。
 - Design Critic 用后来的 requirements 判了两条阻断：F1（R05 暂停路径不可达，AC5.1–5.2 无法执行）、F2（C1/C2/C3 未决冲突被设计写死）。这不是 UI Designer 的能力问题，是 eval 输入链不完整。
-- **重跑 UI Designer 时**，应把 `references/requirements-analyst/eval/case-01/requirements.md` 加入输入，并在 brief 中明确：R05（暂停）与 C1–C3 未决冲突必须在设计前处理，否则 Critic 会按当前 requirements 判退回。
+- **2026-11-25 修复**：`case-01/brief.md` 加入 `requirements.md`，并明确要求处理 R05 与 C1–C3；重跑 r2。
+- **r2 独立评审结果**：29/32，门控全过，视觉表现力门 PASS，case-specific **8/8**，总判断**可作模板（附 2 项小修）**。
+  - F1：**关闭**。R05 入口 → 暂停 sheet → 暂停后今天 → 已暂停列表 → 恢复，点击流实测通过；暂停保存失败可执行。
+  - F2：**关闭**。C1–C3 默认 A/A/A、开关可切、裁决后重做表齐全；默认屏无预选档。
+  - 4 项回归（S06→S10 断链、暂停保存失败未渲染、离线态丢失、暗色令牌丢失）复核 **4/4 CLOSED**。
+  - 残余（spec-only，不阻断）：密度切换、回顾空/加载/失败、极端数据、暗色全量屏；chip 选中态 `✓` 仍是文字；review 周切换仅视觉。
+- **分数口径**：首轮 30/32 与 r2 29/32 **不可横比**——输入条件不同，且 r2 按更严格的「非快乐路径需渲染证据」口径评分。
+- 运行产物保存在本地 `product-studio-evals/ui-designer-habit-case-01-r2/`（不随插件仓库发布）。
 
 ## 注意
 
