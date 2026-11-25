@@ -10,7 +10,7 @@
 
 这个仓库同时是 Claude Code marketplace。
 
-发布到 GitHub 后：
+从 GitHub 安装：
 
 ```bash
 /plugin marketplace add lyydggyxs-cmd/product-studio

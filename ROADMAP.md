@@ -87,13 +87,13 @@
 
 > **插件打包不属于原始 Phase 3**。它是我后来加的分发准备，已放在 Phase 4；Phase 3 没完成前不发布。
 
-### Phase 4：分发（准备完成，待发布）
+### Phase 4：分发（已发布）
 
 | # | 交付 | 说明 | 状态 |
 |---|---|---|---|
 | 1 | 插件清单 | `.claude-plugin/plugin.json` + `marketplace.json`；插件名 `product-studio`，入口 `product-studio:team` | ✅ 完成 |
 | 2 | 本地加载验证 | `claude --plugin-dir`：8 agents + 1 skill | ✅ 完成 |
-| 3 | 发布 GitHub / 安装说明 | 需要确认 owner/repo + 是否公开 | ⬜ 待做 |
+| 3 | 发布 GitHub / 安装说明 | 公开仓库 `lyydggyxs-cmd/product-studio`；v0.1.0 tag；安装命令见 README | ✅ 完成（2026-11-25） |
 
 ---
 
@@ -180,6 +180,7 @@ product-studio/                  ← 插件根目录（repo root）
 | 2026-11-18 | Phase 3.2 Validation Researcher 能力包 + eval case-01（5 份模拟会话合成） | 验证「预注册/行为优先/模式 vs 个案/小样本诚实」能力包；eval 抓到 S5 编码误计会翻转 R1、R3/R4 未测被写成未触发 | eval 30/32，门控 4/4，case-specific 8/8，**可作模板（有保留）**；行为证据 67% < 70% 为方法限制；**Phase 3.2 完成（8/8）** |
 | 2026-11-19 | Phase 3.5 四种调用模式实测（个人读书笔记小案例） | 验证 Studio Lead 的路由、handoff 指针、上下文总线、检查点、决策记录 | Pair / Role / Review / Sprint-lite 全部跑通；指针纪律成立；发现决策日志归属不清、回灌段格式不统一、检查点无固定文件；SKILL.md 已写回三处 |
 | 2026-11-20 | 完整 Sprint Loop 1–3 流程实测（同一案例） | 补上 3.5 唯一没测的端到端协同；验证 Loop 3 的原型/UI/复审/验证计划 | 流程 ✅ / 产品 ⚠️；F2 升级为载体所有权；N-1 为结构门 G2；K1–K4 缺「入口不可发现」；Loop 3 真人验证未执行（只出 742 行计划）；D08/D09 记录 |
+| 2026-11-25 | Phase 4.3 完成：公开发布 `lyydggyxs-cmd/product-studio`（`v0.1.0` tag） | 用户确认公开仓库、仓库名、包含 eval；明确要求先发布，覆盖先前「Phase 3 完成后再发布」的顺序约束 | 插件可通过 marketplace 安装；README 已改为实际 owner/repo；清理了本机绝对路径并新增 `.gitignore` |
 
 > 以后每次变更追加一行。不要删除旧行。
 
@@ -202,6 +203,6 @@ product-studio/                  ← 插件根目录（repo root）
    - **3.3 🟡 每岗 eval**：8 岗 eval 已建；Research Analyst case-02 已通过（29/32）；Definer / Architect case-02 推迟；其余岗位 1 个 case；回归与跨岗复用待补。
    - **3.4 ⬜ 可选岗位**：Content Designer、Commercial Strategist。
    - **3.5 ✅ 四种调用模式 + 完整 Sprint Loop 1–3 流程实测**：个人读书笔记小案例；Pair / Role / Review / Sprint 全部跑通；指针纪律、检查点、角色反哺成立。完整 Sprint 走完 Loop 1（Research→Definer）、Loop 2（Requirements→Architect）、Loop 3（Prototype→UI→Critic→Validation plan）；**Loop 3 的「至少一轮真人验证」未执行**，只出 742 行预注册计划，所以流程 ✅ / 产品 ⚠️。关键跨 Loop 发现：F2 是载体所有权（不是入口按钮位置）、N-1 是结构门 G2、K1–K4 缺「入口不可发现」。详见 `../product-studio-evals/mode-test/mode-test-report.md` 与 `sprint-report.md`。
-3. **Phase 4 分发**：插件清单和本地加载验证已完成；等 Phase 3 完成后再发布 GitHub。
+3. **Phase 4 分发**：已完成——公开仓库 `lyydggyxs-cmd/product-studio`，`v0.1.0` tag（2026-11-25）。原始顺序要求「Phase 3 完成后再发布」，用户明确要求先发布，已记录在变更日志。
 4. 错题本案例保持 PAUSED；恢复条件见 `../product-studio-cases/math-mistake-notebook/CASE-STATUS.md`。
 5. 硬化建议（lite 模式、输出预算、park case）暂不实施，等更多完整案例的证据。
