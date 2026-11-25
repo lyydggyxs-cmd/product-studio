@@ -40,12 +40,13 @@ claude plugin validate .
 
 > 具体路由以 `skills/team/SKILL.md` 为准。
 
-## 先读这两个文件
+## 先读这三个文件
 
 | 文件 | 作用 |
 |---|---|
 | [`ROADMAP.md`](./ROADMAP.md) | **唯一事实源**：已确认决策、硬约束、Phase 1/2/3、当前进度 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | 团队架构：岗位、上下文总线、三个嵌套循环、调用模式 |
+| [`EVALS.md`](./EVALS.md) | 8 个岗位的 eval 回归基线：分数、门控、case-specific、可复跑流程、已知残余 |
 
 ## 当前阵容
 
