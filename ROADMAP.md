@@ -65,14 +65,14 @@
 - Validation Researcher（Phase 2 已加入）
 - 能力包 references 的深度填充（Phase 3）
 
-### Phase 2：补齐专业分工（当前）
+### Phase 2：补齐专业分工（已完成；余「三角协作」🟡 未闭合）
 
 | # | 交付 | 说明 | 状态 |
 |---|---|---|---|
 | 1 | Requirements Analyst | 从 Product Definer 拆出：JTBD、Job Stories、AC、边界条件 | ✅ 完成 |
 | 2 | Prototype Designer | 低保真/中保真原型，专做赌注检验，不追求视觉 | ✅ 完成 |
 | 3 | Validation Researcher | 原型测试、访谈、行为分析、价值/可用性分流 | ✅ 完成 |
-| 4 | 三角协作 | Research ↔ Requirements ↔ Definer；Architect ↔ Prototype ↔ UI ↔ Validation | ⬜ 待实测 |
+| 4 | 三角协作 | Research ↔ Requirements ↔ Definer；Architect ↔ Prototype ↔ UI ↔ Validation | 🟡 已实测一轮，未闭合：2026-11-20 Sprint 走完 Research → Definer、Requirements → Architect、Prototype → UI → Critic → Validation，回灌成立；但 Definer 侧 D1/D2/C1–C3 未裁、Validation 只出计划未执行（见 3.5 与 `../product-studio-evals/mode-test/sprint-report.md`） |
 
 ### Phase 3：打磨与扩展（当前）
 
@@ -83,9 +83,9 @@
 | 3 | 可选岗位 | Content Designer、Commercial Strategist | ⬜ 待做 |
 | 4 | 配对/单岗/评审模式实测 | 验证四种调用模式 | ✅ **四模式 + 完整 Sprint Loop 1–3 流程已跑通**；Pair / Role / Review / Sprint 全部验证；Loop 3 真人验证未执行（只出预注册计划）；SKILL.md 三处修复已写回 |
 
-> **3.1 模板已验证（B2C + B2B）**：`references/research-analyst/`。两个 case 都是 29/32、门控全过、case-specific 8/8；补了反模式「合并项拆解」「单源主结论」。下一步按这个结构复制到其余 7 个岗位，先做 **Product Definer**。
+> **3.1 模板已验证（B2C + B2B）**：`references/research-analyst/`。两个 case 都是 29/32、门控全过、case-specific 8/8；补了反模式「合并项拆解」「单源主结论」。该结构已于 3.2 复制到其余 7 个岗位（2026-11-18 完成，8/8）。
 
-> **插件打包不属于原始 Phase 3**。它是我后来加的分发准备，已放在 Phase 4；Phase 3 没完成前不发布。
+> **插件打包不属于原始 Phase 3**。它是我后来加的分发准备，已放在 Phase 4；Phase 3 没完成前不发布。**（此顺序约束已于 2026-11-25 被用户覆盖：Phase 4 提前完成，见变更日志。）**
 
 ### Phase 4：分发（已发布）
 
@@ -184,6 +184,7 @@ product-studio/                  ← 插件根目录（repo root）
 | 2026-11-25 | Phase 3.3 ① 完成：UI Designer eval 补 `requirements.md` 并重跑 r2 | 修复 Critic 暴露的跨岗输入链缺口；验证 R05 / C1–C3 能否被设计处理 | r2 独立复核 29/32、门控全过、视觉门 PASS、case-specific 8/8、可作模板（附 2 项小修）；F1/F2 关闭；4 项回归复核 4/4 CLOSED；首轮与 r2 分数不可横比 |
 | 2026-11-25 | Phase 3.3 ② 完成：Definer / Architect case-02（B2B） | 建立 B2B 回归基线；验证两个岗位在第二个案例上是否仍通过门控 | Definer **32/32**、Architect **31/32**，均门控全过、case-specific 8/8、可作模板；Architect 最大结构问题（改期请求无归宿）已修并复核 6/6 CLOSED；Definer 4 条一致性小修已闭环；剩余为 Architect 维度 2 标签来源颗粒度 |
 | 2026-11-25 | Phase 3.3 ③ 完成：建立 8 岗 eval 回归基线（[`EVALS.md`](./EVALS.md)） | 统一登记各岗位 case、分数、门控、case-specific、残余；确认每个岗位的 eval README 都有可复跑流程 | **Phase 3.3 完成**；基线：Research 29/29、Definer 29/32、Architect 30/31、Prototype 31、Requirements 31、UI r1 30/r2 29、Critic 30、Validation 30；下一步 Phase 3.4 可选岗位 |
+| 2026-11-25 | ROADMAP 过时表述清理：Phase 2 标题与「三角协作」状态改为 🟡（已实测一轮、未闭合）；3.1 注记的「下一步先做 Definer」、3.2 行内的「case-02 推迟 / 待跑」等中间状态改为当前结果；「Phase 3 完成前不发布」的旧顺序约束标注为已被 11-25 决定覆盖；删除暂停点里重复的 3.4 一行；README 进度段的「下一步」同步为 3.3 已完成 | 核对进度时发现「唯一事实源」多处与当前状态矛盾 | 只改表述，不改范围、架构、角色与既定顺序；下一步仍是 Phase 3.4 |
 
 > 以后每次变更追加一行。不要删除旧行。
 
@@ -191,18 +192,17 @@ product-studio/                  ← 插件根目录（repo root）
 
 ## 6. 下一步
 
-> **2026-11-13 纠正**：Phase 3 未完成。插件打包是我后来加的分发准备，不属于原始 Phase 3；先做 Phase 3，再谈发布。
+> **2026-11-13 纠正**：Phase 3 未完成。插件打包是我后来加的分发准备，不属于原始 Phase 3；先做 Phase 3，再谈发布。**（2026-11-25 更新：用户决定先发布，Phase 4 已完成；「再谈发布」一条作废，其余仍有效。）**
 > `LESSONS.md` 里的硬化建议只作观察记录，等跑过几个完整案例后再决定是否采纳。
 
 > **当前暂停点（2026-11-25）**：Phase 3.1 ✅ / 3.2 ✅（8/8）/ 3.3 ✅（① UI 输入链 ② B2B case-02 ③ 回归基线）/ 3.5 ✅（流程；产品 ⚠️）。下次从 **Phase 3.4** 开始：
 > 3.4 可选岗位（Content Designer / Commercial Strategist）；Phase 4 发布已提前完成，之后只剩维护。
-> 然后 Phase 3.4 可选岗位（Content Designer / Commercial Strategist），最后 Phase 4 发布。
 > 完整 Sprint 流程测试的产物在 `../product-studio-evals/mode-test/`（`mode-test-report.md` + `sprint-report.md`）。
 
 1. **Phase 1 完成；Phase 2 完成。**
 2. **Phase 3 按顺序做**：
    - **3.1 ✅ 能力包模板 + 参考岗位**：Research Analyst（`references/research-analyst/`）；case-01（B2C）+ case-02（B2B）均 29/32，门控全过；补了「合并项拆解」「单源主结论」两条反模式。
-   - **3.2 🟡 复制到其余 7 个岗位**：**Product Definer 能力包已建**；case-01 eval **29/32**，门控全过，case-specific 8/8；补了「单变量假象」「Kill 阈值不一致」两条反模式；case-02 推迟。**Product Architect 能力包已建**；case-01 eval **30/32**，门控全过，case-specific 8/8；补了「合并项推导标 ✅」反模式；case-02 待跑或推迟。**UI Designer 能力包已建**（含参考板 + 视觉表现力门）；eval case-01（习惯养成）**31/32**，门控全过，视觉表现力门 PASS，case-specific 8/8，判断**可作模板（附暗色未出图）**；补了「没有参考板 = 带令牌线框」「状态只写不渲染」两条教训；旧做饭 case 归档为失败样本。**Prototype Designer 能力包已建**；eval case-01（习惯养成，A2 三级平等）**31/32**，门控全过，case-specific 8/8，判断**可作模板（三条非阻断建议已闭合）**；补了「顺序平衡」「追问不提供词」「被试模式」「复合对照臂不归因单一变量」四条纪律。**Requirements Analyst 能力包已建**；eval case-01（习惯养成）**31/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；补了「AC 灰区/证伪优先」「比较命题 vs 设计前提」「产品级信号不归因于假设」三条纪律；维度 3 仍 3（R01 一个 ID 承载 A1/A2/A4）；压缩 825→650–700 行列为模板质量项。**Design Critic 能力包已建**；eval case-01（评审习惯工具 UI）**30/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；抓到两条跨岗位阻断（R05 暂停不可达、C1/C2/C3 写死），并暴露 UI eval 输入缺 `requirements.md` 的链路缺口（已记入 `references/ui-designer/eval/README.md`）。**Validation Researcher 能力包已建**；eval case-01（5 份模拟会话合成）**30/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；补了「预注册/行为优先/模式 vs 个案/模拟数据声明」纪律；行为证据 67% < 70% 列为方法限制。**Phase 3.2 完成（8/8）**。
+   - **3.2 ✅ 复制到其余 7 个岗位（2026-11-18 完成，8/8）**：**Product Definer 能力包已建**；case-01 eval **29/32**，门控全过，case-specific 8/8；补了「单变量假象」「Kill 阈值不一致」两条反模式；case-02 当时推迟，已于 3.3 ② 跑完（32/32）。**Product Architect 能力包已建**；case-01 eval **30/32**，门控全过，case-specific 8/8；补了「合并项推导标 ✅」反模式；case-02 已于 3.3 ② 跑完（31/32）。**UI Designer 能力包已建**（含参考板 + 视觉表现力门）；eval case-01 r1（习惯养成，未含 requirements 输入）**31/32**，门控全过，视觉表现力门 PASS，case-specific 8/8，判断**可作模板（附暗色未出图）**；补了「没有参考板 = 带令牌线框」「状态只写不渲染」两条教训；旧做饭 case 归档为失败样本。**Prototype Designer 能力包已建**；eval case-01（习惯养成，A2 三级平等）**31/32**，门控全过，case-specific 8/8，判断**可作模板（三条非阻断建议已闭合）**；补了「顺序平衡」「追问不提供词」「被试模式」「复合对照臂不归因单一变量」四条纪律。**Requirements Analyst 能力包已建**；eval case-01（习惯养成）**31/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；补了「AC 灰区/证伪优先」「比较命题 vs 设计前提」「产品级信号不归因于假设」三条纪律；维度 3 仍 3（R01 一个 ID 承载 A1/A2/A4）；压缩 825→650–700 行列为模板质量项。**Design Critic 能力包已建**；eval case-01（评审习惯工具 UI）**30/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；抓到两条跨岗位阻断（R05 暂停不可达、C1/C2/C3 写死），并暴露 UI eval 输入缺 `requirements.md` 的链路缺口（该缺口已于 3.3 ① 关闭，UI r2 为 29/32）。**Validation Researcher 能力包已建**；eval case-01（5 份模拟会话合成）**30/32**，门控全过，case-specific 8/8，判断**可作模板（有保留）**；补了「预注册/行为优先/模式 vs 个案/模拟数据声明」纪律；行为证据 67% < 70% 列为方法限制。**Phase 3.2 完成（8/8）**。
    - **3.3 ✅ 每岗 eval**：8 岗 eval 全部建立；Research Analyst case-02 已通过（29/32）；**UI Designer 跨岗输入链已补（r2：29/32、门控全过、视觉门 PASS、case-specific 8/8、可作模板附 2 项小修；F1/F2 关闭，4 项回归复核 CLOSED）**；**Definer case-02（B2B）32/32、Architect case-02（B2B）31/32，均门控全过、case-specific 8/8、可作模板**；**回归基线统一登记在 [`EVALS.md`](./EVALS.md)**。
    - **3.4 ⬜ 可选岗位**：Content Designer、Commercial Strategist。
    - **3.5 ✅ 四种调用模式 + 完整 Sprint Loop 1–3 流程实测**：个人读书笔记小案例；Pair / Role / Review / Sprint 全部跑通；指针纪律、检查点、角色反哺成立。完整 Sprint 走完 Loop 1（Research→Definer）、Loop 2（Requirements→Architect）、Loop 3（Prototype→UI→Critic→Validation plan）；**Loop 3 的「至少一轮真人验证」未执行**，只出 742 行预注册计划，所以流程 ✅ / 产品 ⚠️。关键跨 Loop 发现：F2 是载体所有权（不是入口按钮位置）、N-1 是结构门 G2、K1–K4 缺「入口不可发现」。详见 `../product-studio-evals/mode-test/mode-test-report.md` 与 `sprint-report.md`。

@@ -62,7 +62,7 @@ Studio Lead（skills/team）
 └── Validation Researcher
 ```
 
-Phase 3：打磨能力包、eval、发布。**3.1 已完成**：Research Analyst 能力包 + 2 个 eval case。**3.2 已完成（8/8）**：8 个岗位能力包全部建成并跑 eval；UI Designer 含参考板与视觉表现力门。**3.5 已完成（流程）**：四种调用模式 + 完整 Sprint Loop 1–3 跑通；Loop 3 真人验证未执行（只出预注册计划），所以流程 ✅ / 产品 ⚠️。下一步：Phase 3.3 回归/跨岗复用、3.4 可选岗位。
+Phase 3：打磨能力包、eval、发布。**3.1 已完成**：Research Analyst 能力包 + 2 个 eval case。**3.2 已完成（8/8）**：8 个岗位能力包全部建成并跑 eval；UI Designer 含参考板与视觉表现力门。**3.5 已完成（流程）**：四种调用模式 + 完整 Sprint Loop 1–3 跑通；Loop 3 真人验证未执行（只出预注册计划），所以流程 ✅ / 产品 ⚠️。**3.3 已完成**：8 岗 eval 回归基线登记在 [`EVALS.md`](./EVALS.md)。下一步：3.4 可选岗位（Content Designer / Commercial Strategist）。
 
 ## 目录
 
