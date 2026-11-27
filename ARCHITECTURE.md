@@ -106,7 +106,8 @@
 | `prd.md` | Product Definer | 全员 | 活文档，版本化 |
 | `prototypes/` | Prototype Designer | UI、Critic、Validation | 每轮新增版本 |
 | `design-system.md` | UI Designer | Critic、Prototype | 设计系统变化时 |
-| `decision-log.md` | Studio Lead + 全员 | 全员 | 每个决策追加，不删除 |
+| `decision-log.md` | Studio Lead（唯一写入者；其他岗位只在产出里写「建议决策 / 需要裁决」） | 全员 | 每个决策追加，不删除 |
+| `checkpoints.md` | Studio Lead | 全员 | 每个岗位交付后、每个循环出口追加 |
 | `open-questions.md` | Studio Lead | 全员 | 每周 |
 | `critique.md` | Design Critic | UI、Definer、Architect | 每次评审 |
 
@@ -134,7 +135,7 @@ handoff:
 
 ### 4.3 工件契约
 
-- 每个工件有 **schema**（见 `schemas/`）。
+- 核心契约有 **schema**（见 `schemas/`）：`brief`、`evidence`、`bet`、`decision`、`handoff`；其余工件由 `templates/` 约束。
 - 每个结论带 **置信度**（✅/⚠️/🔮）。
 - 每个决策带 **理由 + 替代方案 + 重新评估条件**。
 - 版本化：不覆盖旧版本，追加新版本号。
@@ -207,10 +208,10 @@ Validation Researcher 找真人测
 
 | 模式 | 入口 | 行为 |
 |---|---|---|
-| **整队 Sprint** | `/product-studio sprint` | Studio Lead 跑一个或多个 Loop，带检查点 |
-| **配对 Pair** | `/product-studio pair research+definer` | 两个岗位围绕一个具体问题协作；如 `requirements+architect`、`prototype+ui`、`ui+critic`、`validation+definer` |
-| **单岗 Role** | `/product-studio role ui-designer` | 只叫一个岗位做 bounded task |
-| **评审 Review** | `/product-studio review` | Critic + Lead 审已有工件 |
+| **整队 Sprint** | `/product-studio:team` | Studio Lead 跑一个或多个 Loop，带检查点 |
+| **配对 Pair** | `/product-studio:team pair research+definer` | 两个岗位围绕一个具体问题协作；如 `requirements+architect`、`prototype+ui`、`ui+critic`、`validation+definer` |
+| **单岗 Role** | `/product-studio:team role ui-designer` | 只叫一个岗位做 bounded task |
+| **评审 Review** | `/product-studio:team review` | Critic + Lead 审已有工件 |
 
 **单岗模式的关键**：每个岗位必须能独立读取上下文总线、独立产出、独立交付——不依赖整条流水线先跑完。
 

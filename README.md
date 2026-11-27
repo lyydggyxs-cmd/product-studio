@@ -4,7 +4,7 @@
 
 > **范围**：调研 → 需求分析 → 产品定义 → IA/结构 → 原型 → PRD → 产品 UI 设计。
 > **不做**：开发、后端、部署、品牌识别、营销页。
-> **状态**：Design-stage（v0.1.0）。先跑通设计链路，不承诺产品成功。
+> **状态**：Design-stage（v0.1.1）。先跑通设计链路，不承诺产品成功。
 
 ## 安装
 
@@ -70,16 +70,16 @@ Phase 3：打磨能力包、eval、发布。**3.1 已完成**：Research Analyst
 .claude-plugin/   插件清单 + marketplace
 skills/team/      Studio Lead 入口（主线程 skill）
 agents/           8 个专业岗位（Claude Code subagent）
-schemas/          上下文工件的 JSON Schema
+schemas/          核心契约的 JSON Schema（brief、证据、赌注、决策、交接）
 templates/        工件模板
-references/       各岗位能力包（Phase 3 填充）
+references/       各岗位能力包（methods / examples / anti-patterns / rubric + eval）
 ```
 
 ## 硬约束
 
 1. 不做开发。
 2. 岗位之间传指针，不传全文。
-3. 每个工件有 schema，每个结论带置信度。
+3. 核心契约有 schema（brief、证据、赌注、决策、交接），每个结论带置信度。
 4. PRD 是活文档。
 5. Studio Lead 不干专业活。
 

@@ -60,6 +60,7 @@ description: >
 ```
 brief.md
 evidence-base.md
+opportunity-map.md
 bet-book.md
 requirements.md
 prd.md
@@ -79,7 +80,7 @@ checkpoints.md
 2. 当前要决定什么？
 3. 为谁做？
 4. 已有材料？
-5. 真实约束？
+5. 真实约束与时间盒？（预算、平台；本轮什么时候必须做判断）
 6. 什么算成功？
 7. 本期做什么 / 不做什么？
 8. 什么情况下停？
@@ -250,6 +251,7 @@ expected_output: bet-book.md 的候选赌注 2–3 个
 | 需求漂移 | 需求还能追溯到赌注吗？ |
 | 结构漂移 | IA 里出现了 Definer 明确不做的内容吗？ |
 | 设计漂移 | UI 的设计意图和 bet/IA 一致吗？ |
+| PRD 空转 | `prd.md` 还留着模板占位符吗？版本号比上一个检查点推进了吗？ |
 
 发现漂移 → 记录到 `decision-log.md` → 在检查点标 🚨 → 让用户决定：接受（进化）/ 回退（漂移）。
 
@@ -271,11 +273,11 @@ expected_output: bet-book.md 的候选赌注 2–3 个
 
 ## 七、输出
 
-每个循环结束，更新：
+每个循环结束，更新（`prd.md` 由 Product Definer 写，其余由 Studio Lead 写）：
 
 - `decision-log.md`：本轮关键决策（**只由 Studio Lead 写**）
 - `open-questions.md`：问题状态
-- `prd.md`：版本号 + 变化
+- `prd.md`：由 Product Definer 按 bet-book + requirements + decision-log 合成当前状态。**不得留模板占位符**；每个循环结束版本号必须推进，版本历史表填上日期和驱动者。Studio Lead 不写 PRD，只在检查点核对这两件事
 - `checkpoints.md`：追加本检查点（信号 / 质量 / 漂移 / 风险 / 发现 / 下一步）
 - 检查点摘要（给用户）
 
@@ -287,7 +289,7 @@ expected_output: bet-book.md 的候选赌注 2–3 个
 
 1. **不做开发**
 2. **不传全文，只传指针**
-3. **每个工件有 schema，每个结论有置信度**
+3. **核心契约有 schema**（brief、证据、赌注、决策、交接；其余工件按模板写），**每个结论有置信度**
 4. **PRD 是活文档**
 5. **Studio Lead 不干专业活**
 

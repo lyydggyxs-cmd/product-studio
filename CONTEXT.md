@@ -25,7 +25,7 @@
 | **Anti-goal** | 明确不做的范围，带理由和恢复条件 |
 | **Handoff** | 岗位之间的交接：指针 + 问题 + 预期产出 |
 | **Loop 1** | 证据 ↔ 定义（Research ⇄ Definer） |
-| **Loop 2** | 定义 ↔ 结构（Definer ⇄ Architect） |
+| **Loop 2** | 定义 ↔ 需求 ↔ 结构（Definer → Requirements ⇄ Architect） |
 | **Loop 3** | 原型 ↔ 设计 ↔ 验证（Prototype ⇄ UI ⇄ Critic ⇄ Validation） |
 | **Context bus** | 共享工作区里的工件集合；岗位按需读，不传全文 |
 
@@ -44,14 +44,15 @@
 | `design-system.md` | UI Designer | Critic |
 | `validation-plan.md` / `validation-report.md` | Validation Researcher | 全员 |
 | `critique.md` | Design Critic | UI、Definer、Architect |
-| `decision-log.md` | Studio Lead + 全员 | 全员 |
+| `decision-log.md` | Studio Lead（唯一写入者；其他岗位只在产出里写「建议决策 / 需要裁决」） | 全员 |
+| `checkpoints.md` | Studio Lead | 全员 |
 | `open-questions.md` | Studio Lead | 全员 |
 
 ## 硬约束
 
 1. 不做开发。
 2. 岗位之间传指针，不传全文。
-3. 每个工件有 schema；每个结论带 ✅⚠️🔮。
+3. 核心契约有 schema（brief、证据、赌注、决策、交接；其余工件按 `templates/` 写）；每个结论带 ✅⚠️🔮。
 4. PRD 是活文档。
 5. Studio Lead 不干专业活。
 
